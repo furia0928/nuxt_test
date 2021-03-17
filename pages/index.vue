@@ -3,7 +3,7 @@
     <div>
       <Logo />
       <h1 class="title">
-        emotion_
+        emotion_지은유
       </h1>
       <div class="links">
         <a
