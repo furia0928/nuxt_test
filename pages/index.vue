@@ -2,8 +2,10 @@
   <div class="container">
     <div>
       <Logo />
+      <bbsList />
+      <bbsDefault />
       <h1 class="title">
-        emotion_지은유
+        emotion
       </h1>
       <div class="links">
         <a
