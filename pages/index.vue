@@ -19,7 +19,12 @@
     </div>
     <ul>
       <li v-for="item in mountains" :key="item.id">
-        {{ item }}
+        <div>
+          {{ item.title }}
+        </div>
+        <div>
+          {{ item.description }}
+        </div>
       </li>
     </ul>
   </div>
@@ -32,13 +37,10 @@
       };
     },
     mounted() {
-      this.fetch();
+      console.log(process.env.NODE_ENV);
     },
-    methods: {
-      async fetch() {
-        const {data: response} = await this.$axios.$get(`https://api.emotion.co.kr/api/v1/works/`);
-        this.mountains = response.content;
-      }
+    async fetch() {
+      this.mountains = await fetch("https://api.nuxtjs.dev/mountains").then(res => res.json());
     }
   };
 </script>
