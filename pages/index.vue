@@ -36,9 +36,7 @@
     },
     methods: {
       async fetch() {
-        const {data: response} = await this.$axios.$get(
-          `http://devapi.emotion.co.kr/api/v1/works/`
-        );
+        const {data: response} = await this.$axios.$get(`https://api.emotion.co.kr/api/v1/works/`);
         this.mountains = response.content;
       }
     }
