@@ -1,4 +1,4 @@
-# emotion_nuxt
+# nuxt_test
 
 ## Build Setup
 
