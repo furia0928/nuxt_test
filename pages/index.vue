@@ -20,10 +20,10 @@
     <ul>
       <li v-for="item in mountains" :key="item.id">
         <div>
-          {{ item.title }}
+          {{ item.id }}
         </div>
         <div>
-          {{ item.description }}
+          {{ item.project }}
         </div>
       </li>
     </ul>
@@ -37,10 +37,16 @@
       };
     },
     mounted() {
-      console.log(process.env.NODE_ENV);
+      console.log(this.mountains?.data);
     },
-    async fetch() {
+    /*async fetch() {
       this.mountains = await fetch("https://api.nuxtjs.dev/mountains").then(res => res.json());
+    },*/
+    async fetch() {
+      const {data} = await fetch(
+          'http://devapi.emotion.co.kr/api/v1/works'
+      ).then(res => res.json());
+      this.mountains = data.content
     }
   };
 </script>
