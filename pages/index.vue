@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Logo />
+<!--    <Logo />-->
     <bbsList />
     <bbsDefault />
     <h1 class="title">emotion</h1>
