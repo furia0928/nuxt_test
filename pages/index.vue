@@ -49,7 +49,7 @@
     },*/
     async asyncData({$axios}) {
       const {data} = await $axios.$get(`${process.env.API_URL}/api/v1/works`);
-      return {mountains: data};
+      return {mountains: data.content};
     }
   };
 </script>
