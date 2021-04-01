@@ -33,6 +33,13 @@ export default {
   buildModules: [
   ],
 
+  dev: process.env.NODE_ENV !== 'production',
+
+  env: {
+    //API_URL: process.env.APP_API_URL
+    APP_API_URL: process.env.NODE_ENV !== 'production' ? 'http://devapi.emotion.co.kr' : 'https://api.emotion.co.kr'
+  },
+
   ssr : true,
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -45,20 +52,21 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+  },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [/^element-ui/],
+   // transpile: [/^element-ui/],
   },
   sitemap: {
     hostname: 'https://furia0928.tk/',
     gzip: true,
     routes: async () => {
-      const { data : {data : response} } = await axios.get('http://devapi.emotion.co.kr/api/v1/works')
+      const { data : {data : response} } = await axios.get(process.env.APP_API_URL + '/api/v1/works')
       console.log(response.content)
       const test = response.content.map((work) => `/${work.id}`);
       console.log(test)
