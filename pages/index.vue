@@ -40,13 +40,11 @@
     },
     mounted() {
       console.log("tes222t", process.env.NODE_ENV)
-      console.log("tes222t", process.env.NUXT_ENV_API_URL)
+      console.log("tes222t", process.env.API_URL)
     },
     async fetch() {
-
-
       const {data} = await fetch(
-          `${process.env.NUXT_ENV_API_URL}/api/v1/works`
+          `${process.env.API_URL}/api/v1/works`
       ).then(res => res.json());
       this.mountains = data.content
     }

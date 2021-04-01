@@ -12,10 +12,10 @@ export default {
   },
 
   mounted() {
-    console.log(process.env.NUXT_ENV_API_URL)
+    console.log(process.env.API_URL)
   },
   async asyncData({params, $axios}) {
-    const {data} = await $axios.$get( `${process.env.NUXT_ENV_API_URL}/api/v1/works/${params.id}`)
+    const {data} = await $axios.$get( `${process.env.API_URL}/api/v1/works/${params.id}`)
     return {mountains : data}
   }
 };

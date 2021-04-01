@@ -56,7 +56,7 @@ export default {
   ],
 
   axios: {
-    //baseURL: process.env.NUXT_ENV_API_URL
+    //baseURL: process.env.API_URL
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
@@ -70,7 +70,7 @@ export default {
     hostname: 'https://furia0928.tk/',
     gzip: true,
     routes: async () => {
-      const { data : {data : response} } = await axios.get(`${process.env.NUXT_ENV_API_URL}/api/v1/works`)
+      const { data : {data : response} } = await axios.get(`${process.env.API_URL}/api/v1/works`)
       const test = response.content.map((work) => `/${work.id}`);
       return [
         '/',
