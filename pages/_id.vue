@@ -15,7 +15,7 @@ export default {
     console.log(process.env.API_URL)
   },
   async asyncData({params, $axios}) {
-    const {data} = await $axios.$get( `http://devapi.emotion.co.kr/api/v1/works/${params.id}`)
+    const {data} = await $axios.$get( `https://api.emotion.co.kr/api/v1/works/${params.id}`)
     return {mountains : data}
   }
 };
