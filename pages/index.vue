@@ -45,7 +45,7 @@
     async fetch() {
       console.log(`${process.env.API_URL}/api/v1/works`)
       const {data} = await fetch(
-          `${process.env.API_URL}/api/v1/works`
+          `https://api.emotion.co.kr/api/v1/works`
       ).then(res => res.json());
       this.mountains = data.content
     }
