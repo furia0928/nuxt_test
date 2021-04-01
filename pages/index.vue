@@ -39,15 +39,14 @@
       };
     },
     mounted() {
-      console.log(process.env.NODE_ENV);
-      console.log(process.env.NUXT_ENV_API_URL);
+      console.log("tes222t", process.env.NODE_ENV)
+      console.log("tes222t", process.env.NUXT_ENV_API_URL)
     },
-    /*async fetch() {
-      this.mountains = await fetch("https://api.nuxtjs.dev/mountains").then(res => res.json());
-    },*/
     async fetch() {
+
+
       const {data} = await fetch(
-          `${process.env.APP_API_URL}/api/v1/works`
+          `${process.env.NUXT_ENV_API_URL}/api/v1/works`
       ).then(res => res.json());
       this.mountains = data.content
     }

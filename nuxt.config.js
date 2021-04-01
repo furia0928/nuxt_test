@@ -1,4 +1,5 @@
-const axios = require('axios')
+const axios = require('axios');
+require('dotenv').config();
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -36,23 +37,26 @@ export default {
   dev: process.env.NODE_ENV !== 'production',
 
   env: {
-    //API_URL: process.env.APP_API_URL
-    APP_API_URL: process.env.NODE_ENV !== 'production' ? 'http://devapi.emotion.co.kr' : 'https://api.emotion.co.kr'
+    //APP_API_URL: process.env.NODE_ENV !== 'production' ? 'http://devapi.emotion.co.kr' : 'https://api.emotion.co.kr'
+  },
+
+  dotenv: {
+    filename: process.env.NODE_ENV === 'production'
+      ? '.env'
+      : '.env.' + process.env.NODE_ENV
   },
 
   ssr : true,
 
-  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/dotenv'
   ],
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
+    //baseURL: process.env.NUXT_ENV_API_URL
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
@@ -66,10 +70,8 @@ export default {
     hostname: 'https://furia0928.tk/',
     gzip: true,
     routes: async () => {
-      const { data : {data : response} } = await axios.get(process.env.APP_API_URL + '/api/v1/works')
-      console.log(response.content)
+      const { data : {data : response} } = await axios.get(`${process.env.NUXT_ENV_API_URL}/api/v1/works`)
       const test = response.content.map((work) => `/${work.id}`);
-      console.log(test)
       return [
         '/',
         ...test

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt -p 8085",
+    "dev": "nuxt -p 8085 --dev",
     "build": "nuxt build",
     "start": "nuxt start -p 8081",
     "generate": "nuxt generate",
@@ -12,6 +12,7 @@
   "dependencies": {
     "@nuxt/content": "^1.11.1",
     "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/sitemap": "^2.4.0",
     "core-js": "^3.8.3",
     "dotenv": "^8.2.0",
