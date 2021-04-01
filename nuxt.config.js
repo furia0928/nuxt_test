@@ -1,19 +1,17 @@
-const axios = require('axios');
+const axios = require("axios");
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'emotion_nuxt',
+    title: "emotion_nuxt",
     htmlAttrs: {
-      lang: 'en'
+      lang: "en"
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      {charset: "utf-8"},
+      {name: "viewport", content: "width=device-width, initial-scale=1"},
+      {hid: "description", name: "description", content: ""}
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{rel: "icon", type: "image/x-icon", href: "/favicon.ico"}]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -30,13 +28,15 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-  ],
+  buildModules: [],
 
-  dev: process.env.NODE_ENV !== 'production',
+  dev: process.env.NODE_ENV !== "production",
 
   env: {
-    API_URL: process.env.NODE_ENV !== 'production' ? 'http://devapi.emotion.co.kr' : 'https://api.emotion.co.kr'
+    API_URL:
+      process.env.NODE_ENV !== "production"
+        ? "http://devapi.emotion.co.kr"
+        : "https://api.emotion.co.kr"
   },
 
   /*dotenv: {
@@ -45,16 +45,12 @@ export default {
       : '.env.' + process.env.NODE_ENV
   },*/
 
-  ssr : true,
+  ssr: true,
 
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxt/content',
-    '@nuxtjs/sitemap',
-  ],
+  modules: ["@nuxtjs/axios", "@nuxt/content", "@nuxtjs/sitemap"],
 
   axios: {
-    //baseURL: process.env.API_URL
+    baseURL: process.env.API_URL
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
@@ -62,12 +58,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-   // transpile: [/^element-ui/],
+    // transpile: [/^element-ui/],
   },
   sitemap: {
-    hostname: 'https://furia0928.tk/',
+    hostname: "https://furia0928.tk/",
     gzip: true,
-    routes : [],
+    routes: []
     /*routes: async () => {
       const { data : {data : response} } = await axios.get(`https://api.emotion.co.kr/api/v1/works`)
       const test = response.content.map((work) => `/${work.id}`);
@@ -77,4 +73,4 @@ export default {
       ]
     }*/
   }
-}
+};
