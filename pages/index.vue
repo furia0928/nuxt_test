@@ -47,10 +47,10 @@
       const {data} = await fetch(`${process.env.API_URL}/api/v1/works`).then(res => res.json());
       this.mountains = data.content;
     },*/
-    async asyncData({$axios}) {
+    async asyncData({$http}) {
       try {
-        console.log("1111", $axios.defaults.baseURL);
-        const {data} = await $axios.$get(`/api/v1/works`);
+        console.log("1111", $http.defaults.baseURL);
+        const {data} = await $http.$get(`/api/v1/works`);
         return {mountains: data.content};
       } catch (e) {
         console.log(e);
