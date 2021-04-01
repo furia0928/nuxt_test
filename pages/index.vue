@@ -49,6 +49,7 @@
     },*/
     async asyncData({$axios}) {
       try {
+        console.log("1111", $axios.defaults.baseURL);
         const {data} = await $axios.$get(`/api/v1/works`);
         return {mountains: data.content};
       } catch (e) {
