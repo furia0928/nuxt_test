@@ -66,7 +66,7 @@ export default {
   sitemap: {
     hostname: "https://furia0928.tk/",
     gzip: true,
-    routes: []
+    routes: ["/"]
     /*routes: async () => {
       const { data : {data : response} } = await axios.get(`https://api.emotion.co.kr/api/v1/works`)
       const test = response.content.map((work) => `/${work.id}`);
