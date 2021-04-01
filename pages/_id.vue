@@ -10,10 +10,6 @@
         //mountains: []
       };
     },
-
-    mounted() {
-      console.log(process.env.API_URL);
-    },
     async asyncData({params, $axios}) {
       try {
         const {data} = await $axios.$get(`/api/v1/works/${params.id}`);

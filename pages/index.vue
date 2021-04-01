@@ -35,13 +35,13 @@
   export default {
     data() {
       return {
-        mountains: []
+        //mountains: []
       };
     },
-    mounted() {
+    /*mounted() {
       console.log("tes222t", process.env.NODE_ENV);
       console.log("tes222t", process.env.API_URL);
-    },
+    },*/
     /*async fetch() {
       console.log(`${process.env.API_URL}/api/v1/works`);
       const {data} = await fetch(`${process.env.API_URL}/api/v1/works`).then(res => res.json());
