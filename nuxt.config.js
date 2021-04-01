@@ -50,7 +50,10 @@ export default {
   modules: ["@nuxtjs/axios", "@nuxt/content", "@nuxtjs/sitemap"],
 
   axios: {
-    baseURL: process.env.API_URL
+    baseURL:
+      process.env.NODE_ENV !== "production"
+        ? "http://devapi.emotion.co.kr"
+        : "https://api.emotion.co.kr"
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
