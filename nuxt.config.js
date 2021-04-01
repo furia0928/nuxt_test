@@ -67,13 +67,14 @@ export default {
   sitemap: {
     hostname: 'https://furia0928.tk/',
     gzip: true,
-    routes: async () => {
+    routes : [],
+    /*routes: async () => {
       const { data : {data : response} } = await axios.get(`${process.env.API_URL}/api/v1/works`)
       const test = response.content.map((work) => `/${work.id}`);
       return [
         '/',
         ...test
       ]
-    }
+    }*/
   }
 }
