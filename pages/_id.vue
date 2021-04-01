@@ -15,9 +15,12 @@
       console.log(process.env.API_URL);
     },
     async asyncData({params, $axios}) {
-      console.log("1111", $axios.defaults.baseURL);
-      const {data} = await $axios.$get(`/api/v1/works/${params.id}`);
-      return {mountains: data};
+      try {
+        const {data} = await $axios.$get(`/api/v1/works/${params.id}`);
+        return {mountains: data};
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 </script>

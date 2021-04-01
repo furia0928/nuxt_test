@@ -49,7 +49,6 @@
     },*/
     async asyncData({$axios}) {
       try {
-        console.log("12111", $axios);
         const {data} = await $axios.$get(`/api/v1/works`);
         return {mountains: data.content};
       } catch (e) {
