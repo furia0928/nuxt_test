@@ -48,8 +48,12 @@
       this.mountains = data.content;
     },*/
     async asyncData({$axios}) {
-      const {data} = await $axios.$get(`${process.env.API_URL}/api/v1/works`);
-      return {mountains: data.content};
+      try {
+        const {data} = await $axios.$get(`${process.env.API_URL}/api/v1/works`);
+        return {mountains: data.content};
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 </script>
