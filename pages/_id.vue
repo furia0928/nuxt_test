@@ -14,9 +14,9 @@
     mounted() {
       console.log(process.env.API_URL);
     },
-    async asyncData({params, $http}) {
-      console.log("1111", $http);
-      const {data} = await $http.$get(`/api/v1/works/${params.id}`);
+    async asyncData({params, $axios}) {
+      console.log("1111", $axios.defaults.baseURL);
+      const {data} = await $axios.$get(`/api/v1/works/${params.id}`);
       return {mountains: data};
     }
   };
