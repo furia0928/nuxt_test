@@ -46,6 +46,10 @@
       console.log(`${process.env.API_URL}/api/v1/works`);
       const {data} = await fetch(`${process.env.API_URL}/api/v1/works`).then(res => res.json());
       this.mountains = data.content;
+    },
+    async asyncData({params, $axios}) {
+      const {data} = await $axios.$get(`${process.env.API_URL}/api/v1/works/${params.id}`);
+      return {mountains2: data};
     }
   };
 </script>
