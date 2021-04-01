@@ -1,5 +1,4 @@
 const axios = require('axios');
-require('dotenv').config();
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -37,14 +36,14 @@ export default {
   dev: process.env.NODE_ENV !== 'production',
 
   env: {
-    //APP_API_URL: process.env.NODE_ENV !== 'production' ? 'http://devapi.emotion.co.kr' : 'https://api.emotion.co.kr'
+    API_URL: process.env.NODE_ENV !== 'production' ? 'http://devapi.emotion.co.kr' : 'https://api.emotion.co.kr'
   },
 
-  dotenv: {
+  /*dotenv: {
     filename: process.env.NODE_ENV === 'production'
       ? '.env'
       : '.env.' + process.env.NODE_ENV
-  },
+  },*/
 
   ssr : true,
 
@@ -52,7 +51,6 @@ export default {
     '@nuxtjs/axios',
     '@nuxt/content',
     '@nuxtjs/sitemap',
-    '@nuxtjs/dotenv'
   ],
 
   axios: {
