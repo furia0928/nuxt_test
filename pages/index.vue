@@ -19,12 +19,14 @@
     </div>
     <ul>
       <li v-for="item in mountains" :key="item.id">
-        <div>
-          {{ item.id }}
-        </div>
-        <div>
-          {{ item.project }}
-        </div>
+        <nuxt-link :to="`/${item.id}`">
+          <div>
+            {{ item.id }}
+          </div>
+          <div>
+            {{ item.project }}
+          </div>
+        </nuxt-link>
       </li>
     </ul>
   </div>

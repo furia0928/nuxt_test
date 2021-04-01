@@ -1,3 +1,4 @@
+const axios = require('axios')
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -40,6 +41,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    '@nuxtjs/sitemap'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -51,5 +53,19 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: [/^element-ui/],
+  },
+  sitemap: {
+    hostname: 'https://furia0928.tk/',
+    gzip: true,
+    routes: async () => {
+      const { data : {data : response} } = await axios.get('http://devapi.emotion.co.kr/api/v1/works')
+      console.log(response.content)
+      const test = response.content.map((work) => `/${work.id}`);
+      console.log(test)
+      return [
+        '/',
+        ...test
+      ]
+    }
   }
 }
