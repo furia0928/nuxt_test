@@ -15,7 +15,7 @@
       console.log(process.env.API_URL);
     },
     async asyncData({params, $axios}) {
-      const {data} = await $axios.$get(`${process.env.API_URL}/api/v1/works/${params.id}`);
+      const {data} = await $axios.$get(`/api/v1/works/${params.id}`);
       return {mountains: data};
     }
   };

@@ -49,7 +49,7 @@
     },*/
     async asyncData({$axios}) {
       try {
-        const {data} = await $axios.$get(`${process.env.API_URL}/api/v1/works`);
+        const {data} = await $axios.$get(`/api/v1/works`);
         return {mountains: data.content};
       } catch (e) {
         console.log(e);
