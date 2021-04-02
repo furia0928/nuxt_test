@@ -60,7 +60,7 @@
       try {
         console.log(process.env.NODE_ENV)
         console.log('123', $axios.defaults.baseURL)
-        const {data} = await $axios.$get(`https://api.emotion.co.kr/api/v1/works`);
+        const {data} = await axios.get(`https://api.emotion.co.kr/api/v1/works`);
         return {mountains: data.content};
       } catch (e) {
         console.log(e);
