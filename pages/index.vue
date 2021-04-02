@@ -49,10 +49,8 @@
     },
     async asyncData({$axios}) {
       try {
-        console.log(process.env.NODE_ENV)
-        console.log('123', $axios.defaults.baseURL)
-        const {data} = await axios.get(`https://api.nuxtjs.dev/posts`);
-        return {mountains: data.content};
+        const mountains = await $axios.$get(`https://api.nuxtjs.dev/posts`);
+        return {mountains};
       } catch (e) {
         console.log(e);
       }
