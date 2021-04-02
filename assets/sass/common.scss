@@ -1,0 +1,29 @@
+@import "reset";
+@import "fonts";
+
+body {
+  font-family: "Noto Sans KR", "Arial", "Apple SD Gothic Neo", sans-serif;
+  font-size: inherit;
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+}
+input[type="text"],
+input[type="url"],
+input[type="tel"],
+input[type="email"] {
+  width: 100%;
+  height: auto;
+  padding: 12px 0;
+  line-height: 28px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  &::placeholder {
+    color: #b4b4b4;
+  }
+}
+.scrollmagic-pin-spacer {
+  position: absolute !important;
+}
+.scroll-content {
+  will-change: transform;
+}

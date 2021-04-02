@@ -15,6 +15,12 @@ export default {
     link: [{rel: "icon", type: "image/x-icon", href: "/favicon.ico"}]
   },
 
+  css: [
+    // Load a Node.js module directly (here it's a Sass file)
+    //'@/assets/sass/_extend',
+    '@/assets/sass/common'
+  ],
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   /*css: [
     'element-ui/lib/theme-chalk/index.css'
@@ -48,8 +54,17 @@ export default {
 
   ssr: true,
 
-  modules: ["@nuxtjs/axios", "@nuxt/content", "@nuxtjs/sitemap"],
+  modules: ["@nuxtjs/axios", "@nuxt/content", "@nuxtjs/sitemap",
+    "@nuxtjs/style-resources"
+  ],
 
+  styleResources: {
+    scss : [
+      '~assets/sass/_extend',
+      '~assets/sass/_mixins',
+      '~assets/sass/_variables',
+    ]
+  },
   axios: {
     baseURL:
       process.env.NODE_ENV !== "production"
@@ -57,7 +72,6 @@ export default {
         : "https://api.emotion.co.kr"
   },
 
-  // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -67,14 +81,15 @@ export default {
   sitemap: {
     hostname: "https://furia0928.tk/",
     gzip: true,
-    routes: ["/"]
-    /*routes: async () => {
-      const { data : {data : response} } = await axios.get(`https://api.emotion.co.kr/api/v1/works`)
-      const test = response.content.map((work) => `/${work.id}`);
+    //routes: ["/"]
+    routes: async () => {
+      const {data} = await axios.get(`https://api.nuxtjs.dev/posts`);
+      //console.log(data)
+      const test = data.map((el) => `/mountains/${el.id}`)
       return [
         '/',
         ...test
       ]
-    }*/
+    }
   }
 };
