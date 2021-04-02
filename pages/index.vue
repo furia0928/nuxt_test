@@ -22,10 +22,13 @@
       <li v-for="item in mountains" :key="item.id">
         <nuxt-link :to="`/${item.id}`">
           <div>
+            {{ item }}
+          </div>
+          <div>
             {{ item.id }}
           </div>
           <div>
-            {{ item.project }}
+            {{ item.title }}
           </div>
         </nuxt-link>
       </li>
