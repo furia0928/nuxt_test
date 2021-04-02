@@ -7,7 +7,7 @@
   export default {
     data() {
       return {
-        //mountains: []
+        mountains: []
       };
     },
     async asyncData({params, $axios}) {

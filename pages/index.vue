@@ -3,6 +3,7 @@
     <!--    <Logo />-->
     <bbsList />
     <bbsDefault />
+    <button @click="testFn">testset</button>
     <h1 class="title">emotion</h1>
     <div class="links">
       <a href="https://nuxtjs.org/" target="_blank" rel="noopener noreferrer" class="button--green">
@@ -32,11 +33,19 @@
   </div>
 </template>
 <script>
+  import axios from "../plugins/axios";
+
   export default {
     data() {
       return {
-        //mountains: []
+       mountains: []
       };
+    },
+    methods : {
+      async testFn(){
+        const test = await axios.get('https://api.emotion.co.kr/api/v1/works')
+        console.log(test)
+      }
     },
     /*mounted() {
       console.log("tes222t", process.env.NODE_ENV);
@@ -49,7 +58,9 @@
     },*/
     async asyncData({$axios}) {
       try {
-        const {data} = await $axios.$get(`/api/v1/works`);
+        console.log(process.env.NODE_ENV)
+        console.log('123', $axios.defaults.baseURL)
+        const {data} = await $axios.$get(`https://api.emotion.co.kr/api/v1/works`);
         return {mountains: data.content};
       } catch (e) {
         console.log(e);

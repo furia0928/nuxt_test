@@ -1,6 +1,7 @@
 const axios = require("axios");
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+
   head: {
     title: "emotion_nuxt",
     htmlAttrs: {
@@ -26,18 +27,18 @@ export default {
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
-
+  //mode: "universal",
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [],
 
   dev: process.env.NODE_ENV !== "production",
 
-  env: {
+  /*env: {
     API_URL:
       process.env.NODE_ENV !== "production"
         ? "http://devapi.emotion.co.kr"
         : "https://api.emotion.co.kr"
-  },
+  },*/
 
   /*dotenv: {
     filename: process.env.NODE_ENV === 'production'
