@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <BUTTON TYPE="button" @click="testFn">tsetast</BUTTON>
     <ul class="list">
       <li v-for="item in mountains" :key="item.id">
         <nuxt-link :to="`/mountains/${item.id}`">
@@ -48,7 +49,7 @@
     },
     async asyncData({$axios}) {
       try {
-        const mountains = await $axios.$get(`https://api.emotion.co.kr/api/v1/works`);
+        const mountains = await $axios.$get(`https://api.nuxtjs.dev/posts`);
         console.log(mountains)
         return {mountains};
       } catch (e) {
