@@ -12,8 +12,8 @@
     },
     async asyncData({params, $axios}) {
       try {
-        const {data} = await $axios.$get(`https://api.nuxtjs.dev/posts/${params.id}`);
-        return {mountains: data};
+        const mountains = await $axios.$get(`https://api.nuxtjs.dev/posts/${params.id}`);
+        return {mountains};
       } catch (e) {
         console.log(e);
       }
