@@ -18,17 +18,22 @@
         GitHub
       </a>
     </div>
-    <ul>
+    <ul class="list">
       <li v-for="item in mountains" :key="item.id">
         <nuxt-link :to="`/${item.id}`">
-          <div>
-            {{ item }}
+          <div class="thumb">
+            <img :src="item.image" alt="">
           </div>
-          <div>
-            {{ item.id }}
-          </div>
-          <div>
-            {{ item.title }}
+          <div class="info">
+            <div>
+              {{ item.id }}
+            </div>
+            <div class="title">
+              {{ item.title }}
+            </div>
+            <div>
+              {{ item.description }}
+            </div>
           </div>
         </nuxt-link>
       </li>
@@ -61,7 +66,35 @@
   };
 </script>
 
-<style>
+<style lang="scss">
+  .list {
+    li + li {
+      border-top:1px solid red;
+      margin-top: 10px;
+    }
+    li {
+      list-style:none;
+      a {
+        display:flex;
+        padding:10px;
+        .thumb {
+          flex: 0 0 100px;
+          img {
+            width:100%;
+          }
+        }
+        .info {
+          margin-left:30px;
+          text-align:left;
+          .title {
+            font-size:30px;
+            font-weight:bold;
+          }
+        }
+      }
+
+    }
+  }
   .container {
     margin: 0 auto;
     text-align: center;

@@ -1,6 +1,20 @@
 <template>
   <div>
-    {{ mountains }}
+    <div>
+      {{ mountains.id }}
+    </div>
+    <div>
+      {{ mountains.title }}
+    </div>
+    <div>
+      <img :src="mountains.image" alt="">
+    </div>
+    <div>
+      {{ mountains.height }}
+    </div>
+    <div>
+      {{ mountains.description }}
+    </div>
   </div>
 </template>
 <script>
