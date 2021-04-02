@@ -47,20 +47,11 @@
         console.log(test)
       }
     },
-    /*mounted() {
-      console.log("tes222t", process.env.NODE_ENV);
-      console.log("tes222t", process.env.API_URL);
-    },*/
-    /*async fetch() {
-      console.log(`${process.env.API_URL}/api/v1/works`);
-      const {data} = await fetch(`${process.env.API_URL}/api/v1/works`).then(res => res.json());
-      this.mountains = data.content;
-    },*/
     async asyncData({$axios}) {
       try {
         console.log(process.env.NODE_ENV)
         console.log('123', $axios.defaults.baseURL)
-        const {data} = await axios.get(`https://api.emotion.co.kr/api/v1/works`);
+        const {data} = await axios.get(`https://api.nuxtjs.dev/posts`);
         return {mountains: data.content};
       } catch (e) {
         console.log(e);
