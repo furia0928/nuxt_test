@@ -4,7 +4,7 @@
     <ul class="list">
       <li v-for="item in mountains" :key="item.id">
         <nuxt-link :to="`/mountains/${item.id}`">
-<!--          <div class="thumb">
+          <div class="thumb">
             <img :src="item.image" alt="">
           </div>
           <div class="info">
@@ -17,7 +17,7 @@
             <div>
               {{ item.description }}
             </div>
-          </div>-->
+          </div>
         </nuxt-link>
       </li>
     </ul>
@@ -27,7 +27,7 @@
   import axios from "../../plugins/axios";
 
   export default {
-    /*head() {
+    head() {
       return {
         meta: [
           {hid: "og:url", name: "og:url", content: `https://furia0928.tk/${this.$route.fullPath}`},
@@ -35,7 +35,7 @@
           {hid: "og:image", name: "og:image", content: this.mountains[0].image},
         ],
       }
-    },*/
+    },
     data() {
       return {
        mountains: []
@@ -49,7 +49,7 @@
     },
     async asyncData({$axios}) {
       try {
-        const mountains = await $axios.$get(`https://api.emotion.co.kr/api/v1/works`);
+        const mountains = await $axios.$get(`https://api.nuxtjs.dev/posts`);
         console.log(mountains)
         return {mountains};
       } catch (e) {
