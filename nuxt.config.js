@@ -88,7 +88,6 @@ export default {
     hostname: "https://furia0928.tk/",
     gzip: true,
     lastmod: new Date,
-    //routes: ["/"]
     routes: async () => {
       const {data} = await axios.get(`https://api.nuxtjs.dev/posts`);
       const test = data.map((el) => `/mountains/${el.id}`)
