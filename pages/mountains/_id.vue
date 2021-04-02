@@ -19,6 +19,17 @@
 </template>
 <script>
   export default {
+    head() {
+      return {
+        meta: [
+          {hid: "og:url", name: "og:url", content: `https://furia0928.tk/${this.$route.fullPath}`},
+          {hid: "og:title", name: "title", content: this.mountains.title},
+          {hid: "og:description", name: "description", content: this.mountains.description},
+          {hid: "og:image", name: "og:image", content: this.mountains.image},
+        ],
+
+      }
+    },
     data() {
       return {
         mountains: []

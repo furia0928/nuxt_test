@@ -10,7 +10,13 @@ export default {
     meta: [
       {charset: "utf-8"},
       {name: "viewport", content: "width=device-width, initial-scale=1"},
-      {hid: "description", name: "description", content: ""}
+      {hid: "title", name: "title", content: "nuxt-test-title"},
+      {hid: "description", name: "description", content: "nuxt-test-description"},
+      {hid: "og:url", name: "og:url", content: "https://furia0928.tk/"},
+      {hid: "og:type", name: "og:type", content: "website"},
+      {hid: "og:title", name: "og:title", content: "nuxt-test-title"},
+      {hid: "og:description", name: "og:description", content: "nuxt-test-description"},
+      {hid: "og:image", name: "og:image", content: "https://res.cloudinary.com/redfern-web/image/upload/v1599840408/redfern-dev/png/nuxt.png"},
     ],
     link: [{rel: "icon", type: "image/x-icon", href: "/favicon.ico"}]
   },
@@ -84,7 +90,6 @@ export default {
     //routes: ["/"]
     routes: async () => {
       const {data} = await axios.get(`https://api.nuxtjs.dev/posts`);
-      //console.log(data)
       const test = data.map((el) => `/mountains/${el.id}`)
       return [
         '/',

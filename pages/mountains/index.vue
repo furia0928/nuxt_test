@@ -26,6 +26,15 @@
   import axios from "../../plugins/axios";
 
   export default {
+    head() {
+      return {
+        meta: [
+          {hid: "og:url", name: "og:url", content: `https://furia0928.tk/${this.$route.fullPath}`},
+          {hid: "title", name: "title", content: "nuxt-test-mountains"},
+          {hid: "og:image", name: "og:image", content: this.mountains[0].image},
+        ],
+      }
+    },
     data() {
       return {
        mountains: []

@@ -1,18 +1,37 @@
 <template>
-  <ul class="gnb">
-    <li>
-      <nuxt-link to="/">home</nuxt-link>
-    </li>
-    <li>
-      <nuxt-link to="/mountains">mountains</nuxt-link>
-    </li>
-  </ul>
+  <div class="gnb">
+    <ul>
+      <li>
+        <nuxt-link to="/">home</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/mountains">mountains</nuxt-link>
+      </li>
+    </ul>
+    <button type="button" @click="facebookShare">facebook</button>
+  </div>
 </template>
+
+<script>
+export default {
+  methods : {
+    facebookShare() {
+      window.open(
+          `http://m.facebook.com/share.php?u=${window.location}`
+      );
+    },
+  }
+}
+</script>
 
 <style lang="scss">
 .gnb {
   display:flex;
+  justify-content:space-between;
   border-bottom:5px solid #ddd;
+  ul {
+    display:flex;
+  }
   a {
     display:block;
     padding:20px;
