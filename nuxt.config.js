@@ -45,12 +45,12 @@ export default {
 
   dev: process.env.NODE_ENV !== "production",
 
-  /*env: {
+  env: {
     API_URL:
       process.env.NODE_ENV !== "production"
         ? "http://devapi.emotion.co.kr"
         : "https://api.emotion.co.kr"
-  },*/
+  },
 
   /*dotenv: {
     filename: process.env.NODE_ENV === 'production'
@@ -74,12 +74,12 @@ export default {
       '~assets/sass/_variables',
     ]
   },
-  axios: {
+  /*axios: {
     baseURL:
       process.env.NODE_ENV !== "production"
         ? "http://devapi.emotion.co.kr"
         : "https://api.emotion.co.kr"
-  },
+  },*/
 
   content: {},
 

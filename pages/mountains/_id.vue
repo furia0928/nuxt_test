@@ -4,16 +4,24 @@
       {{ mountains.id }}
     </div>
     <div>
-      {{ mountains.title }}
+      {{ mountains.project }}
     </div>
     <div>
-      <img :src="mountains.image" alt="">
+      <img :src="imgUrl(mountains.pcDetailImagePhysicalName)" alt="">
     </div>
     <div>
-      {{ mountains.height }}
+      {{ mountains.portFolioSortCode }}
     </div>
     <div>
-      {{ mountains.description }}
+      {{ mountains.projectClientName }}
+    </div>
+    <div>
+      {{ mountains.projectServiceName }}
+      {{ mountains.projectType }}
+      {{ mountains.releaseDate }}
+    </div>
+    <div v-html="mountains.projectDesc.fieldContents">
+
     </div>
   </div>
 </template>
@@ -22,24 +30,30 @@
     head() {
       return {
         meta: [
-          {hid: "og:url", name: "og:url", content: `https://furia0928.tk/${this.$route.fullPath}`},
+          /*{hid: "og:url", name: "og:url", content: `https://furia0928.tk/${this.$route.fullPath}`},
           {hid: "og:title", name: "title", content: this.mountains.title},
-          {hid: "og:description", name: "description", content: this.mountains.description},
-          {hid: "og:image", name: "og:image", content: this.mountains.image},
+          {hid: "og:description", name: "description", content: this.mountains.description},*/
+          //{hid: "og:image", name: "og:image", content: this.imgUrl(this.mountains.image)},
         ],
 
       }
     },
     data() {
       return {
-        mountains: []
+        mountains: {}
       };
+    },
+    methods : {
+      imgUrl(url) {
+        return process.env.API_URL + url;
+      },
     },
     async asyncData({params, $axios}) {
       try {
-        const mountains = await $axios.$get(`https://api.emotion.co.kr/api/v1/works/${params.id}`);
+        const {data : response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/${params.id}`);
         //const mountains = await $axios.$get(`https://api.nuxtjs.dev/posts/${params.id}`);
-        return {mountains};
+        console.log(response)
+        return {mountains : response};
       } catch (e) {
         console.log(e);
       }

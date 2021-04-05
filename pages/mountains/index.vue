@@ -5,17 +5,19 @@
       <li v-for="item in mountains" :key="item.id">
         <nuxt-link :to="`/mountains/${item.id}`">
           <div class="thumb">
-            <img :src="item.image" alt="">
+            <img :src="imgUrl(item.pcDetailImagePhysicalName)" alt="">
           </div>
           <div class="info">
             <div>
               {{ item.id }}
             </div>
             <div class="title">
-              {{ item.title }}
+              {{ item.project }}
             </div>
             <div>
-              {{ item.description }}
+              {{ item.portFolioSortCode }}<br/>
+              {{item.projectClientName}}<br/>
+              {{item.projectType}}
             </div>
           </div>
         </nuxt-link>
@@ -32,7 +34,7 @@
         meta: [
           {hid: "og:url", name: "og:url", content: `https://furia0928.tk/${this.$route.fullPath}`},
           {hid: "title", name: "title", content: "nuxt-test-mountains"},
-          {hid: "og:image", name: "og:image", content: this.mountains[0].image},
+          {hid: "og:image", name: "og:image", content: this.imgUrl(this.mountains[0].pcDetailImagePhysicalName)},
         ],
       }
     },
@@ -45,14 +47,17 @@
       async testFn(){
         const test = await axios.get('https://api.emotion.co.kr/api/v1/works')
         console.log(test)
-      }
+      },
+      imgUrl(url) {
+        return process.env.API_URL + url;
+      },
     },
     async asyncData({$axios}) {
       try {
-        const mountains = await $axios.$get(`https://api.emotion.co.kr/api/v1/works`);
+        const {data : mountains} = await $axios.$get(`${process.env.API_URL}/api/v1/works`);
         //const mountains = await $axios.$get(`https://api.nuxtjs.dev/posts`);
-        console.log(mountains)
-        return {mountains};
+        console.log(mountains.content)
+        return {mountains: mountains.content};
       } catch (e) {
         console.log(e);
       }
