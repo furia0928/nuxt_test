@@ -97,10 +97,14 @@ export default {
     gzip: true,
     routes: async () => {
       const {data} = await axios.get(`https://api.nuxtjs.dev/posts`);
-      const test = data.map((el) => `/mountains/${el.id}`)
+      const test = data.map((el) => `/mountains/${el.id}/`)
       return [
         {
           url:'/',
+          priority: 1,
+        },
+        {
+          url:'/mountains/',
           priority: 1,
         },
         ...test
