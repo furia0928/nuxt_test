@@ -60,7 +60,10 @@ export default {
 
   ssr: true,
 
-  modules: ["@nuxtjs/axios", "@nuxt/content", "@nuxtjs/sitemap",
+  modules: [
+    "@nuxtjs/axios",
+    "@nuxt/content",
+    //"@nuxtjs/sitemap",
     "@nuxtjs/style-resources"
   ],
 
@@ -84,7 +87,7 @@ export default {
   build: {
     // transpile: [/^element-ui/],
   },
-  sitemap: {
+  /*sitemap: {
     defaults: {
       changefreq: 'daily',
       priority: 1,
@@ -103,5 +106,5 @@ export default {
         ...test
       ]
     }
-  }
+  }*/
 };
