@@ -37,7 +37,8 @@
     },
     async asyncData({params, $axios}) {
       try {
-        const mountains = await $axios.$get(`https://api.nuxtjs.dev/posts/${params.id}`);
+        const mountains = await $axios.$get(`https://api.emotion.co.kr/api/v1/works/${params.id}`);
+        //const mountains = await $axios.$get(`https://api.nuxtjs.dev/posts/${params.id}`);
         return {mountains};
       } catch (e) {
         console.log(e);

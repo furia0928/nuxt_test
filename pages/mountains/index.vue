@@ -49,7 +49,8 @@
     },
     async asyncData({$axios}) {
       try {
-        const mountains = await $axios.$get(`https://api.nuxtjs.dev/posts`);
+        const mountains = await $axios.$get(`https://api.emotion.co.kr/api/v1/works`);
+        //const mountains = await $axios.$get(`https://api.nuxtjs.dev/posts`);
         console.log(mountains)
         return {mountains};
       } catch (e) {
