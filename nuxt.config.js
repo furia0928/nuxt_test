@@ -16,7 +16,12 @@ export default {
       {hid: "og:type", name: "og:type", content: "website"},
       {hid: "og:title", name: "og:title", content: "nuxt-test-title"},
       {hid: "og:description", name: "og:description", content: "nuxt-test-description"},
-      {hid: "og:image", name: "og:image", content: "https://res.cloudinary.com/redfern-web/image/upload/v1599840408/redfern-dev/png/nuxt.png"},
+      {
+        hid: "og:image",
+        name: "og:image",
+        content:
+          "https://res.cloudinary.com/redfern-web/image/upload/v1599840408/redfern-dev/png/nuxt.png"
+      }
     ],
     link: [{rel: "icon", type: "image/x-icon", href: "/favicon.ico"}]
   },
@@ -24,7 +29,8 @@ export default {
   css: [
     // Load a Node.js module directly (here it's a Sass file)
     //'@/assets/sass/_extend',
-    '@/assets/sass/common'
+    "@/assets/sass/common",
+    "@/assets/sass/layout"
   ],
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -41,7 +47,7 @@ export default {
   components: true,
   //mode: "universal",
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: ["nuxt-gsap-module"],
 
   dev: process.env.NODE_ENV !== "production",
 
@@ -60,19 +66,10 @@ export default {
 
   ssr: true,
 
-  modules: [
-    "@nuxtjs/axios",
-    "@nuxt/content",
-    "@nuxtjs/sitemap",
-    "@nuxtjs/style-resources"
-  ],
+  modules: ["@nuxtjs/axios", "@nuxt/content", "@nuxtjs/sitemap", "@nuxtjs/style-resources"],
 
   styleResources: {
-    scss : [
-      '~assets/sass/_extend',
-      '~assets/sass/_mixins',
-      '~assets/sass/_variables',
-    ]
+    scss: ["~assets/sass/_extend", "~assets/sass/_mixins", "~assets/sass/_variables"]
   },
   /*axios: {
     baseURL:
@@ -89,7 +86,7 @@ export default {
   },
   sitemap: {
     defaults: {
-      changefreq: 'daily',
+      changefreq: "daily",
       priority: 1,
       lastmod: new Date()
     },
@@ -97,18 +94,91 @@ export default {
     gzip: true,
     routes: async () => {
       const {data} = await axios.get(`https://api.nuxtjs.dev/posts`);
-      const test = data.map((el) => `/mountains/${el.id}/`)
+      const test = data.map(el => `/mountains/${el.id}/`);
       return [
         {
-          url:'/',
-          priority: 1,
+          url: "/",
+          priority: 1
         },
         {
-          url:'/mountains/',
-          priority: 1,
+          url: "/mountains/",
+          priority: 1
         },
         ...test
-      ]
+      ];
+    }
+  },
+  pageTransition: {
+    name: "page",
+    mode: "out-in",
+    css: false,
+    beforeEnter(el) {
+      console.log("page beforeEnter");
+      this.$gsap.set(el, {
+        x: 50,
+        opacity: 0
+      });
+    },
+    enter(el, done) {
+      this.$gsap.to(el, {
+        x: 0,
+        opacity: 1,
+        duration: 0.3,
+        ease: "Power1.easeInOut",
+        onComplete: done
+      });
+    },
+    beforeLeave(el) {
+      console.log("page beforeLeave");
+      this.$gsap.set(el, {
+        x: 0,
+        opacity: 1
+      });
+    },
+    leave(el, done) {
+      this.$gsap.to(el, {
+        x: 50,
+        opacity: 0,
+        duration: 0.3,
+        ease: "Power1.easeInOut",
+        onComplete: done
+      });
+    }
+  },
+  layoutTransition: {
+    name: "layout",
+    mode: "out-in",
+    beforeEnter(el) {
+      console.log("page beforeEnter");
+      this.$gsap.set(el, {
+        x: 50,
+        opacity: 0
+      });
+    },
+    enter(el, done) {
+      this.$gsap.to(el, {
+        x: 0,
+        opacity: 1,
+        duration: 0.3,
+        ease: "Power1.easeInOut",
+        onComplete: done
+      });
+    },
+    beforeLeave(el) {
+      console.log("page beforeLeave");
+      this.$gsap.set(el, {
+        x: 0,
+        opacity: 1
+      });
+    },
+    leave(el, done) {
+      this.$gsap.to(el, {
+        x: 50,
+        opacity: 0,
+        duration: 0.3,
+        ease: "Power1.easeInOut",
+        onComplete: done
+      });
     }
   }
 };

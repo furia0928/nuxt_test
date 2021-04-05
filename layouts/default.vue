@@ -4,7 +4,9 @@
     <Nuxt />
   </div>
 </template>
-
-<style>
-
-</style>
+<script>
+  export default {
+    name: "defaultLayout"
+  };
+</script>
+<style></style>

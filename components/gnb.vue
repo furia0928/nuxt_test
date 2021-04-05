@@ -5,7 +5,7 @@
         <nuxt-link to="/">home</nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/Project">Project</nuxt-link>
+        <nuxt-link to="/project">Project</nuxt-link>
       </li>
     </ul>
     <button type="button" @click="facebookShare">facebook</button>
@@ -13,29 +13,27 @@
 </template>
 
 <script>
-export default {
-  methods : {
-    facebookShare() {
-      window.open(
-          `http://m.facebook.com/share.php?u=${window.location}`
-      );
-    },
-  }
-}
+  export default {
+    methods: {
+      facebookShare() {
+        window.open(`http://m.facebook.com/share.php?u=${window.location}`);
+      }
+    }
+  };
 </script>
 
 <style lang="scss">
-.gnb {
-  display:flex;
-  justify-content:space-between;
-  border-bottom:5px solid #ddd;
-  ul {
-    display:flex;
+  .gnb {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 5px solid #ddd;
+    ul {
+      display: flex;
+    }
+    a {
+      display: block;
+      padding: 20px;
+      font-size: 20px;
+    }
   }
-  a {
-    display:block;
-    padding:20px;
-    font-size:20px;
-  }
-}
 </style>

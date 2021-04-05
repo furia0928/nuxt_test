@@ -7,7 +7,7 @@
       {{ mountains.project }}
     </div>
     <div>
-      <img :src="imgUrl(mountains.pcDetailImagePhysicalName)" alt="">
+      <img :src="imgUrl(mountains.pcDetailImagePhysicalName)" alt="" />
     </div>
     <div>
       {{ mountains.portFolioSortCode }}
@@ -16,42 +16,50 @@
       {{ mountains.projectClientName }}
     </div>
     <div>
-      {{ mountains.projectServiceName }}<br/>
-      {{ mountains.projectType }}<br/>
+      {{ mountains.projectServiceName }}<br />
+      {{ mountains.projectType }}<br />
       {{ mountains.releaseDate }}
     </div>
-    <div v-html="mountains.projectDesc.fieldContents">
-
-    </div>
+    <div v-html="mountains.projectDesc.fieldContents"></div>
   </div>
 </template>
 <script>
   export default {
+    layout: "clean",
     head() {
       return {
         meta: [
           {hid: "og:url", name: "og:url", content: `https://furia0928.tk/${this.$route.fullPath}`},
           {hid: "og:title", name: "title", content: this.mountains.project},
-          {hid: "og:description", name: "description", content: this.mountains.projectDesc.fieldContents},
-          {hid: "og:image", name: "og:image", content: this.imgUrl(this.mountains.pcDetailImagePhysicalName)},
-        ],
-
-      }
+          {
+            hid: "og:description",
+            name: "description",
+            content: this.mountains.projectDesc.fieldContents
+          },
+          {
+            hid: "og:image",
+            name: "og:image",
+            content: this.imgUrl(this.mountains.pcDetailImagePhysicalName)
+          }
+        ]
+      };
     },
     data() {
       return {
         mountains: {}
       };
     },
-    methods : {
+    methods: {
       imgUrl(url) {
         return process.env.API_URL + url;
-      },
+      }
     },
     async asyncData({params, $axios}) {
       try {
-        const {data : response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/${params.id}`);
-        return {mountains : response};
+        const {data: response} = await $axios.$get(
+          `${process.env.API_URL}/api/v1/works/${params.id}`
+        );
+        return {mountains: response};
       } catch (e) {
         console.log(e);
       }
@@ -59,12 +67,7 @@
   };
 </script>
 
-<style>
-  .container {
-    margin: 0 auto;
-    text-align: center;
-  }
-
+<style lang="scss" scoped>
   .title {
     display: block;
     font-weight: 300;

@@ -4,7 +4,7 @@
       <li v-for="item in project" :key="item.id">
         <nuxt-link :to="`/project/${item.id}/`">
           <div class="thumb">
-            <img :src="imgUrl(item.pcDetailImagePhysicalName)" alt="">
+            <img :src="imgUrl(item.pcDetailImagePhysicalName)" alt="" />
           </div>
           <div class="info">
             <div>
@@ -14,9 +14,9 @@
               {{ item.project }}
             </div>
             <div>
-              {{ item.portFolioSortCode }}<br/>
-              {{item.projectClientName}}<br/>
-              {{item.projectType}}
+              {{ item.portFolioSortCode }}<br />
+              {{ item.projectClientName }}<br />
+              {{ item.projectType }}
             </div>
           </div>
         </nuxt-link>
@@ -31,23 +31,27 @@
         meta: [
           {hid: "og:url", name: "og:url", content: `https://furia0928.tk/${this.$route.fullPath}`},
           {hid: "title", name: "title", content: "nuxt-test-mountains"},
-          {hid: "og:image", name: "og:image", content: this.imgUrl(this.project[0].pcDetailImagePhysicalName)},
-        ],
-      }
+          {
+            hid: "og:image",
+            name: "og:image",
+            content: this.imgUrl(this.project[0].pcDetailImagePhysicalName)
+          }
+        ]
+      };
     },
     data() {
       return {
         project: []
       };
     },
-    methods : {
+    methods: {
       imgUrl(url) {
         return process.env.API_URL + url;
-      },
+      }
     },
     async asyncData({$axios}) {
       try {
-        const {data : response} = await $axios.$get(`${process.env.API_URL}/api/v1/works`);
+        const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works`);
         return {project: response.content};
       } catch (e) {
         console.log(e);
@@ -56,40 +60,34 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .list {
     li + li {
-      border-top:1px solid red;
+      border-top: 1px solid red;
       margin-top: 10px;
     }
     li {
-      list-style:none;
+      list-style: none;
       a {
-        display:flex;
-        padding:10px;
+        display: flex;
+        padding: 10px;
         .thumb {
           flex: 0 0 100px;
           img {
-            width:100%;
+            width: 100%;
           }
         }
         .info {
-          margin-left:30px;
-          text-align:left;
+          margin-left: 30px;
+          text-align: left;
           .title {
-            font-size:30px;
-            font-weight:bold;
+            font-size: 30px;
+            font-weight: bold;
           }
         }
       }
-
     }
   }
-  .container {
-    margin: 0 auto;
-    text-align: center;
-  }
-
   .title {
     display: block;
     font-weight: 300;
