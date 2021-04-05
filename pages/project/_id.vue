@@ -16,8 +16,8 @@
       {{ mountains.projectClientName }}
     </div>
     <div>
-      {{ mountains.projectServiceName }}
-      {{ mountains.projectType }}
+      {{ mountains.projectServiceName }}<br/>
+      {{ mountains.projectType }}<br/>
       {{ mountains.releaseDate }}
     </div>
     <div v-html="mountains.projectDesc.fieldContents">
@@ -51,8 +51,6 @@
     async asyncData({params, $axios}) {
       try {
         const {data : response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/${params.id}`);
-        //const mountains = await $axios.$get(`https://api.nuxtjs.dev/posts/${params.id}`);
-        console.log(response)
         return {mountains : response};
       } catch (e) {
         console.log(e);

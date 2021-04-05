@@ -5,7 +5,7 @@
         <nuxt-link to="/">home</nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/mountains">mountains</nuxt-link>
+        <nuxt-link to="/Project">Project</nuxt-link>
       </li>
     </ul>
     <button type="button" @click="facebookShare">facebook</button>

@@ -1,9 +1,8 @@
 <template>
   <div class="container">
-    <BUTTON TYPE="button" @click="testFn">tsetast</BUTTON>
     <ul class="list">
-      <li v-for="item in mountains" :key="item.id">
-        <nuxt-link :to="`/mountains/${item.id}`">
+      <li v-for="item in project" :key="item.id">
+        <nuxt-link :to="`/project/${item.id}/`">
           <div class="thumb">
             <img :src="imgUrl(item.pcDetailImagePhysicalName)" alt="">
           </div>
@@ -26,38 +25,30 @@
   </div>
 </template>
 <script>
-  import axios from "../../plugins/axios";
-
   export default {
     head() {
       return {
         meta: [
           {hid: "og:url", name: "og:url", content: `https://furia0928.tk/${this.$route.fullPath}`},
           {hid: "title", name: "title", content: "nuxt-test-mountains"},
-          {hid: "og:image", name: "og:image", content: this.imgUrl(this.mountains[0].pcDetailImagePhysicalName)},
+          {hid: "og:image", name: "og:image", content: this.imgUrl(this.project[0].pcDetailImagePhysicalName)},
         ],
       }
     },
     data() {
       return {
-       mountains: []
+        project: []
       };
     },
     methods : {
-      async testFn(){
-        const test = await axios.get('https://api.emotion.co.kr/api/v1/works')
-        console.log(test)
-      },
       imgUrl(url) {
         return process.env.API_URL + url;
       },
     },
     async asyncData({$axios}) {
       try {
-        const {data : mountains} = await $axios.$get(`${process.env.API_URL}/api/v1/works`);
-        //const mountains = await $axios.$get(`https://api.nuxtjs.dev/posts`);
-        console.log(mountains.content)
-        return {mountains: mountains.content};
+        const {data : response} = await $axios.$get(`${process.env.API_URL}/api/v1/works`);
+        return {project: response.content};
       } catch (e) {
         console.log(e);
       }
