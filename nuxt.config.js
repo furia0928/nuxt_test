@@ -93,8 +93,10 @@ export default {
     hostname: "https://furia0928.tk/",
     gzip: true,
     routes: async () => {
-      const {data} = await axios.get(`${process.env.API_URL}/api/v1/works`);
-      const test = data.map(el => `/project/${el.id}/`);
+      const {
+        data: {data: response}
+      } = await axios.get(`${process.env.API_URL}/api/v1/works/`);
+      const test = response.content.map(el => `/project/${el.id}/`);
       return ["/", "/project/", ...test];
     }
   },

@@ -11,7 +11,7 @@
       mode="out-in"
       :css="false"
     >
-      <component :is="comp" :key="comp" />
+      <component :is="test" />
     </transition>
   </div>
 </template>
@@ -19,25 +19,16 @@
   export default {
     data() {
       return {
-        test: "bbsList",
-        docState: "saved"
+        test: "LazyBbsList"
       };
     },
-    computed: {
-      comp() {
-        return this.test;
-      }
-    },
-    created() {
-      console.log("created", this.comp);
-    },
-    mounted() {
-      console.log("mounted", this.comp);
-    },
     watch: {
-      comp(val) {
-        console.log(val);
+      $route(to, from) {
+        console.log(to, from);
       }
+    },
+    beforeCreate() {
+      console.log(this.$route);
     },
     methods: {
       compFn(val) {
