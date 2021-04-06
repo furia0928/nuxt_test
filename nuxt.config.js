@@ -80,6 +80,10 @@ export default {
 
   content: {},
 
+  server: {
+    port: 8085
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     // transpile: [/^element-ui/],
