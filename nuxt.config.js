@@ -93,8 +93,8 @@ export default {
     hostname: "https://furia0928.tk/",
     gzip: true,
     routes: async () => {
-      const {data} = await axios.get(`https://api.nuxtjs.dev/posts`);
-      const test = data.map(el => `/mountains/${el.id}/`);
+      const {data} = await axios.get(`${process.env.API_URL}/works/`);
+      const test = data.map(el => `/project/${el.id}/`);
       return [
         {
           url: "/",
