@@ -93,7 +93,7 @@ export default {
     hostname: "https://furia0928.tk/",
     gzip: true,
     routes: async () => {
-      axios.defaults.baseURL = "http://localhost:8085";
+      console.log(process.env.API_URL);
       const {
         data: {data: response}
       } = await axios.get(`${process.env.API_URL}/api/v1/works/`);
