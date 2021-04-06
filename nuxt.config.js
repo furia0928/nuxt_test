@@ -80,10 +80,6 @@ export default {
 
   content: {},
 
-  server: {
-    port: 8085
-  },
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     // transpile: [/^element-ui/],
@@ -97,6 +93,7 @@ export default {
     hostname: "https://furia0928.tk/",
     gzip: true,
     routes: async () => {
+      axios.defaults.baseURL = "http://localhost:8085";
       const {
         data: {data: response}
       } = await axios.get(`${process.env.API_URL}/api/v1/works/`);
