@@ -103,7 +103,7 @@ export default {
         }
       });
       const test = response.content.map(el => `/project/${el.id}/`);
-      return ["/", "/project/", ...test];
+      return ["/", ...test];
     }
   },
   pageTransition: {
