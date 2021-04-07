@@ -1,22 +1,20 @@
 <template>
   <div class="container">
     <ul class="list">
-      <li v-for="item in project" :key="item.id">
-        <nuxt-link :to="`/project/${item.id}/`">
+      <li v-for="item in magazine" :key="item.id">
+        <nuxt-link :to="`/magazine/${item.id}/`">
           <div class="thumb">
-            <img :src="imgUrl(item.pcDetailImagePhysicalName)" alt="" />
+            <img :src="imgUrl(item.pcKeyPicturePhysicalName)" alt="" />
           </div>
           <div class="info">
             <div>
               {{ item.id }}
             </div>
             <div class="title">
-              {{ item.project }}
+              {{ item.magazineTitle }}
             </div>
             <div>
-              {{ item.portFolioSortCode }}<br />
-              {{ item.projectClientName }}<br />
-              {{ item.projectType }}
+              {{ item.reportingDate }}
             </div>
           </div>
         </nuxt-link>
@@ -34,14 +32,14 @@
           {
             hid: "og:image",
             name: "og:image",
-            content: this.imgUrl(this.project[0].pcDetailImagePhysicalName)
+            content: this.imgUrl(this.magazine[0].pcKeyPicturePhysicalName)
           }
         ]
       };
     },
     data() {
       return {
-        project: []
+        magazine: []
       };
     },
     methods: {
@@ -51,13 +49,14 @@
     },
     async asyncData({$axios}) {
       try {
-        const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
+        const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/magazine/`, {
           params: {
             page: 0,
             size: 999
           }
         });
-        return {project: response.content};
+        console.log(response.content);
+        return {magazine: response.content};
       } catch (e) {
         console.log(e);
       }

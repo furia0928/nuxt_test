@@ -93,7 +93,6 @@ export default {
     hostname: "https://furia0928.tk/",
     gzip: true,
     routes: async () => {
-      console.log(process.env.API_URL);
       const {
         data: {data: response}
       } = await axios.get(`https://api.emotion.co.kr/api/v1/works/`, {
