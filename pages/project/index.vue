@@ -51,7 +51,12 @@
     },
     async asyncData({$axios}) {
       try {
-        const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works`);
+        const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
+          params: {
+            page: 0,
+            size: 999
+          }
+        });
         return {project: response.content};
       } catch (e) {
         console.log(e);

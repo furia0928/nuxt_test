@@ -96,7 +96,12 @@ export default {
       console.log(process.env.API_URL);
       const {
         data: {data: response}
-      } = await axios.get(`https://api.emotion.co.kr/api/v1/works/`);
+      } = await axios.get(`https://api.emotion.co.kr/api/v1/works/`, {
+        params: {
+          page: 0,
+          size: 999
+        }
+      });
       const test = response.content.map(el => `/project/${el.id}/`);
       return ["/", "/project/", ...test];
     }
