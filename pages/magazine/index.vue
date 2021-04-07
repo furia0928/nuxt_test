@@ -55,7 +55,7 @@
             size: 999
           }
         });
-        console.log(response.content);
+        //console.log(response.content);
         return {magazine: response.content};
       } catch (e) {
         console.log(e);

@@ -24,11 +24,11 @@
     },
     watch: {
       $route(to, from) {
-        console.log(to, from);
+        //console.log(to, from);
       }
     },
     beforeCreate() {
-      console.log(this.$route);
+      //console.log(this.$route);
     },
     methods: {
       compFn(val) {

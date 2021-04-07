@@ -51,7 +51,7 @@
         const {data: response} = await $axios.$get(
           `${process.env.API_URL}/api/v1/magazine/${params.id}`
         );
-        console.log(response);
+        //console.log(response);
         return {magazine: response};
       } catch (e) {
         console.log(e);
