@@ -94,15 +94,24 @@ export default {
     gzip: true,
     routes: async () => {
       const {
-        data: {data: response}
+        data: {data: works}
       } = await axios.get(`https://api.emotion.co.kr/api/v1/works/`, {
         params: {
           page: 0,
           size: 999
         }
       });
-      const test = response.content.map(el => `/project/${el.id}/`);
-      return ["/", ...test];
+      const {
+        data: {data: magazine}
+      } = await axios.get(`https://api.emotion.co.kr/api/v1/magazine/`, {
+        params: {
+          page: 0,
+          size: 999
+        }
+      });
+      const workArr = works.content.map(el => `/works/${el.id}/`);
+      const magazineArr = magazine.content.map(el => `/magazine/${el.id}/`);
+      return ["/", ...workArr, ...magazineArr];
     }
   },
   pageTransition: {
