@@ -3,7 +3,7 @@
     <!--    <button @click="routerQueryUpdate(0)">123123</button>
     <button @click="routerQueryUpdate(1)">123123</button>
     <button @click="$fetch">Refresh</button>-->
-
+    1231
     <transition mode="out-in" name="list">
       <ul class="list" :key="$route.query.page">
         <li v-for="item in works" :key="item.id" class="list-item">
@@ -54,7 +54,6 @@
     },
     data() {
       return {
-        page: 1,
         size: 5,
         works: [],
         totalElements: 0
@@ -79,6 +78,7 @@
     },
     /*watchQuery: ["page"],*/
     scrollToTop: true,
+    fetchOnServer: false,
     async fetch() {
       console.log("fetch", this.$route.query.page);
       try {
