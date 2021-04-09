@@ -84,7 +84,7 @@
       try {
         const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
-            page: parseInt(this.$route.query.page) - 1 || 0,
+            page: parseInt(this.$route.query.page || 1) - 1 || 0,
             size: this.size
           }
         });
