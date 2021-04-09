@@ -1,27 +1,40 @@
 <template>
   <div class="container">
-    <ul class="list">
-      <li v-for="item in works" :key="item.id">
-        <nuxt-link :to="`/works/${item.id}/`">
-          <div class="thumb">
-            <img :src="imgUrl(item.pcDetailImagePhysicalName)" alt="" />
-          </div>
-          <div class="info">
-            <div>
-              {{ item.id }}
+    <!--    <button @click="test(0)">123123</button>
+    <button @click="test(1)">123123</button>
+    <button @click="$fetch">Refresh</button>-->
+
+    <transition mode="out-in" name="list">
+      <ul class="list" :key="$route.query.page">
+        <li v-for="item in works" :key="item.id" class="list-item">
+          <nuxt-link :to="`/works/${item.id}/`">
+            <div class="thumb">
+              <img :src="imgUrl(item.pcDetailImagePhysicalName)" alt="" />
             </div>
-            <div class="title">
-              {{ item.project }}
+            <div class="info">
+              <div>
+                {{ item.id }}
+              </div>
+              <div class="title">
+                {{ item.project }}
+              </div>
+              <div>
+                {{ item.portFolioSortCode }}<br />
+                {{ item.projectClientName }}<br />
+                {{ item.projectType }}
+              </div>
             </div>
-            <div>
-              {{ item.portFolioSortCode }}<br />
-              {{ item.projectClientName }}<br />
-              {{ item.projectType }}
-            </div>
-          </div>
-        </nuxt-link>
-      </li>
-    </ul>
+          </nuxt-link>
+        </li>
+      </ul>
+    </transition>
+    <el-pagination
+      class="pagination"
+      layout="prev, pager, next"
+      :page-size="size"
+      :total="total"
+      @current-change="test"
+    ></el-pagination>
   </div>
 </template>
 <script>
@@ -34,30 +47,48 @@
           {
             hid: "og:image",
             name: "og:image",
-            content: this.imgUrl(this.works[0].pcDetailImagePhysicalName)
+            content: this.imgUrl(this.works[0]?.pcDetailImagePhysicalName)
           }
         ]
       };
     },
     data() {
       return {
-        works: []
+        page: 1,
+        size: 5,
+        works: [],
+        total: 0
       };
     },
     methods: {
+      test(val) {
+        console.log(val);
+        this.$router.push({
+          query: {page: val - 1}
+        });
+      },
       imgUrl(url) {
         return process.env.API_URL + url;
       }
     },
-    async asyncData({$axios}) {
+    watch: {
+      "$route.query.page"(val) {
+        console.log(val);
+        this.$fetch();
+      }
+    },
+    /*watchQuery: ["page"],*/
+    scrollToTop: true,
+    async fetch() {
       try {
-        const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
+        const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
-            page: 0,
-            size: 999
+            page: this.$route.query.page || 0,
+            size: this.size
           }
         });
-        return {works: response.content};
+        this.total = response.totalElements;
+        this.works = response.content;
       } catch (e) {
         console.log(e);
       }
@@ -66,9 +97,28 @@
 </script>
 
 <style lang="scss" scoped>
+  .pagination {
+    margin-top: 30px;
+    text-align: center;
+  }
+  .list {
+    border: 1px solid #ddd;
+    transition-duration: 0.3s;
+    transition-property: transform, opacity;
+  }
+  .list-enter {
+    opacity: 0;
+  }
+  .list-leave-to {
+    opacity: 0;
+  }
+  .list-leave-active {
+    //position: absolute;
+  }
+
   .list {
     li + li {
-      border-top: 1px solid red;
+      border-top: 1px solid #ddd;
       margin-top: 10px;
     }
     li {
