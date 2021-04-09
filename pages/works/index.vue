@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <!--    <button @click="test(0)">123123</button>
-    <button @click="test(1)">123123</button>
+    <!--    <button @click="routerQueryUpdate(0)">123123</button>
+    <button @click="routerQueryUpdate(1)">123123</button>
     <button @click="$fetch">Refresh</button>-->
 
     <transition mode="out-in" name="list">
@@ -32,8 +32,8 @@
       class="pagination"
       layout="prev, pager, next"
       :page-size="size"
-      :total="total"
-      @current-change="test"
+      :total="totalElements"
+      @current-change="routerQueryUpdate"
     ></el-pagination>
   </div>
 </template>
@@ -57,14 +57,14 @@
         page: 1,
         size: 5,
         works: [],
-        total: 0
+        totalElements: 0
       };
     },
     methods: {
-      test(val) {
+      routerQueryUpdate(val) {
         console.log(val);
         this.$router.push({
-          query: {page: val - 1}
+          query: {page: val}
         });
       },
       imgUrl(url) {
@@ -83,11 +83,11 @@
       try {
         const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
-            page: this.$route.query.page || 0,
+            page: this.$route.query.page - 1 || 0,
             size: this.size
           }
         });
-        this.total = response.totalElements;
+        this.totalElements = response.totalElements;
         this.works = response.content;
       } catch (e) {
         console.log(e);
