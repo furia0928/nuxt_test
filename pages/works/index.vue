@@ -62,7 +62,7 @@
     },
     methods: {
       routerQueryUpdate(val) {
-        console.log(val);
+        console.log("routerQueryUpdate", val);
         this.$router.push({
           query: {page: val}
         });
@@ -73,18 +73,18 @@
     },
     watch: {
       "$route.query.page"(val) {
-        console.log(val);
+        console.log("$route.query.page", val);
         this.$fetch();
       }
     },
     /*watchQuery: ["page"],*/
     scrollToTop: true,
     async fetch() {
-      console.log(this.$route.query.page);
+      console.log("fetch", this.$route.query.page);
       try {
         const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
-            page: this.$route.query.page - 1 || 0,
+            page: parseInt(this.$route.query.page) - 1 || 0,
             size: this.size
           }
         });
