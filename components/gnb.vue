@@ -5,10 +5,10 @@
         <nuxt-link to="/">home</nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/works">Works</nuxt-link>
+        <nuxt-link to="/works/">Works</nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/magazine">Magazine</nuxt-link>
+        <nuxt-link to="/magazine/">Magazine</nuxt-link>
       </li>
     </ul>
     <button type="button" @click="facebookShare">facebook</button>

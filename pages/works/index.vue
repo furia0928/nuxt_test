@@ -80,6 +80,7 @@
     /*watchQuery: ["page"],*/
     scrollToTop: true,
     async fetch() {
+      console.log(this.$route.query.page);
       try {
         const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
