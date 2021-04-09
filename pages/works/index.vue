@@ -88,6 +88,7 @@
             size: this.size
           }
         });
+        console.log(response);
         console.log("fetch222", this.$route.query.page);
         this.totalElements = response.totalElements;
         this.works = response.content;
