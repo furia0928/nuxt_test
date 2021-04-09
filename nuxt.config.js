@@ -91,7 +91,7 @@ export default {
       } = await axios.get(`https://api.emotion.co.kr/api/v1/works/`, {
         params: {
           page: 0,
-          size: 999
+          size: 9999
         }
       });
       const {
@@ -99,7 +99,7 @@ export default {
       } = await axios.get(`https://api.emotion.co.kr/api/v1/magazine/`, {
         params: {
           page: 0,
-          size: 999
+          size: 9999
         }
       });
       const workArr = works.content.map(el => `/works/${el.id}/`);

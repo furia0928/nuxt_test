@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div>
       {{ magazine.id }}
     </div>
@@ -17,7 +17,7 @@
 </template>
 <script>
   export default {
-    layout: "clean",
+    //layout: "clean",
     head() {
       return {
         meta: [
