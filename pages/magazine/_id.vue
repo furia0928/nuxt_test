@@ -47,7 +47,6 @@
     },
     methods: {
       imgUrl(url) {
-        console.log(process.env.API_URL);
         return process.env.API_URL + url;
       }
     },
@@ -56,7 +55,6 @@
         const {data: response} = await $axios.$get(
           `${process.env.API_URL}/api/v1/magazine/${params.id}`
         );
-        //console.log(response);
         return {magazine: response};
       } catch (e) {
         console.log(e);

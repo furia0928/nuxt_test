@@ -1,26 +1,26 @@
 <template>
   <div class="container">
     <div>
-      {{ mountains.id }}
+      {{ work.id }}
     </div>
     <div>
-      {{ mountains.project }}
+      {{ work.project }}
     </div>
     <div>
-      <img :src="imgUrl(mountains.pcDetailImagePhysicalName)" alt="" />
+      <img :src="imgUrl(work.pcDetailImagePhysicalName)" alt="" />
     </div>
     <div>
-      {{ mountains.portFolioSortCode }}
+      {{ work.portFolioSortCode }}
     </div>
     <div>
-      {{ mountains.projectClientName }}
+      {{ work.projectClientName }}
     </div>
     <div>
-      {{ mountains.projectServiceName }}<br />
-      {{ mountains.projectType }}<br />
-      {{ mountains.releaseDate }}
+      {{ work.projectServiceName }}<br />
+      {{ work.projectType }}<br />
+      {{ work.releaseDate }}
     </div>
-    <div v-html="mountains.projectDesc.fieldContents"></div>
+    <div v-html="work.projectDesc.fieldContents"></div>
   </div>
 </template>
 <script>
@@ -34,23 +34,23 @@
             property: "og:url",
             content: `https://furia0928.tk/${this.$route.fullPath}`
           },
-          {hid: "og:title", property: "og:title", content: this.mountains.project},
+          {hid: "og:title", property: "og:title", content: this.work.project},
           {
             hid: "og:description",
             property: "og:description",
-            content: this.mountains.projectDesc.fieldContents
+            content: this.work.projectDesc.fieldContents
           },
           {
             hid: "og:image",
             property: "og:image",
-            content: this.imgUrl(this.mountains.pcDetailImagePhysicalName)
+            content: this.imgUrl(this.work.pcDetailImagePhysicalName)
           }
         ]
       };
     },
     data() {
       return {
-        mountains: {}
+        work: {}
       };
     },
     methods: {
@@ -63,7 +63,7 @@
         const {data: response} = await $axios.$get(
           `${process.env.API_URL}/api/v1/works/${params.id}`
         );
-        return {mountains: response};
+        return {work: response};
       } catch (e) {
         console.log(e);
       }
