@@ -37,6 +37,7 @@
   </div>
 </template>
 <script>
+  const size = 5;
   export default {
     head() {
       return {
@@ -57,7 +58,7 @@
     },
     data() {
       return {
-        size: 5,
+        size: size,
         works: null,
         totalElements: 0
       };
@@ -78,25 +79,27 @@
         return process.env.API_URL + url;
       }
     },
-    watch: {
+    /*watch: {
       "$route.query.page"(val) {
         console.log("$route.query.page", val);
         this.$fetch();
       }
-    },
-    /*watchQuery: ["page"],*/
+    },*/
+    watchQuery: ["page"],
     //scrollToTop: true,
-    fetchOnServer: false,
-    async fetch() {
+    //fetchOnServer: false,
+    async asyncData({route, $axios}) {
       try {
-        const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
+        const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
-            page: parseInt(this.$route.query.page || 1) - 1,
-            size: this.size
+            page: parseInt(route.query.page || 1) - 1,
+            size: size
           }
         });
-        this.totalElements = response.totalElements;
-        this.works = response.content;
+        return {
+          totalElements: response.totalElements,
+          works: response.content
+        };
       } catch (e) {
         console.log(e);
       }
