@@ -3,7 +3,6 @@
     <!--    <button @click="routerQueryUpdate(0)">123123</button>
     <button @click="routerQueryUpdate(1)">123123</button>
     <button @click="$fetch">Refresh</button>-->
-    1231
     <transition mode="out-in" name="list">
       <ul class="list" :key="$route.query.page" v-if="works">
         <li v-for="item in works" :key="item.id" class="list-item">
