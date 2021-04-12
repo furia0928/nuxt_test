@@ -63,12 +63,6 @@
         totalElements: 0
       };
     },
-    /*mounted() {
-      this.$nextTick(() => {
-        this.$nuxt.$loading.start();
-        setTimeout(() => this.$nuxt.$loading.finish(), 500);
-      });
-    },*/
     methods: {
       routerQueryUpdate(val) {
         this.$router.push({
@@ -79,23 +73,18 @@
         return process.env.API_URL + url;
       }
     },
-    /*watch: {
-      "$route.query.page"(val) {
-        console.log("$route.query.page", val);
-        this.$fetch();
-      }
-    },*/
     watchQuery: ["page"],
-    //scrollToTop: true,
-    //fetchOnServer: false,
-    async asyncData({route, $axios}) {
+    async asyncData(context) {
       try {
-        const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
-          params: {
-            page: parseInt(route.query.page || 1) - 1,
-            size: size
+        const {data: response} = await context.app.$axios.$get(
+          `${process.env.API_URL}/api/v1/works/`,
+          {
+            params: {
+              page: parseInt(context.query.page || 1) - 1,
+              size: size
+            }
           }
-        });
+        );
         return {
           totalElements: response.totalElements,
           works: response.content
