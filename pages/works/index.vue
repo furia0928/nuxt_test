@@ -78,12 +78,12 @@
         return process.env.API_URL + url;
       }
     },
-    /*watch: {
+    watch: {
       "$route.query.page"(val) {
         console.log("$route.query.page", val);
         this.$fetch();
       }
-    },*/
+    },
     /*watchQuery: ["page"],*/
     //scrollToTop: true,
     //fetchOnServer: false,
