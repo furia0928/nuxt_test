@@ -62,15 +62,14 @@
         totalElements: 0
       };
     },
-    mounted() {
+    /*mounted() {
       this.$nextTick(() => {
         this.$nuxt.$loading.start();
         setTimeout(() => this.$nuxt.$loading.finish(), 500);
       });
-    },
+    },*/
     methods: {
       routerQueryUpdate(val) {
-        console.log("routerQueryUpdate", val);
         this.$router.push({
           query: {page: val}
         });
@@ -79,17 +78,16 @@
         return process.env.API_URL + url;
       }
     },
-    watch: {
+    /*watch: {
       "$route.query.page"(val) {
         console.log("$route.query.page", val);
         this.$fetch();
       }
-    },
+    },*/
     /*watchQuery: ["page"],*/
-    scrollToTop: true,
-    fetchOnServer: false,
+    //scrollToTop: true,
+    //fetchOnServer: false,
     async fetch() {
-      console.log("fetch", this.$route.query.page);
       try {
         const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
@@ -97,8 +95,6 @@
             size: this.size
           }
         });
-        console.log(response);
-        console.log("fetch222", this.$route.query.page);
         this.totalElements = response.totalElements;
         this.works = response.content;
       } catch (e) {
