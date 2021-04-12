@@ -86,7 +86,7 @@
     },
     /*watchQuery: ["page"],*/
     //scrollToTop: true,
-    //fetchOnServer: false,
+    fetchOnServer: false,
     async fetch() {
       try {
         const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
