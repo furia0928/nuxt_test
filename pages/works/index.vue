@@ -76,6 +76,7 @@
     watchQuery: ["page"],
     async asyncData(context) {
       try {
+        console.log("query", context.query.page);
         const {data: response} = await context.app.$axios.$get(
           `${process.env.API_URL}/api/v1/works/`,
           {
