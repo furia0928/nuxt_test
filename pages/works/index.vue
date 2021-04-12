@@ -5,7 +5,7 @@
     <button @click="$fetch">Refresh</button>-->
     1231
     <transition mode="out-in" name="list">
-      <ul class="list" :key="$route.query.page">
+      <ul class="list" :key="$route.query.page" v-if="works">
         <li v-for="item in works" :key="item.id" class="list-item">
           <nuxt-link :to="`/works/${item.id}/`">
             <div class="thumb">
@@ -47,7 +47,7 @@
           {
             hid: "og:image",
             name: "og:image",
-            content: this.imgUrl(this.works[0]?.pcDetailImagePhysicalName)
+            content: this.imgUrl(this.works?.[0].pcDetailImagePhysicalName)
           }
         ]
       };
@@ -55,9 +55,15 @@
     data() {
       return {
         size: 5,
-        works: [],
+        works: null,
         totalElements: 0
       };
+    },
+    mounted() {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+        setTimeout(() => this.$nuxt.$loading.finish(), 500);
+      });
     },
     methods: {
       routerQueryUpdate(val) {
