@@ -26,10 +26,10 @@
             property: "og:url",
             content: `https://furia0928.tk/${this.$route.fullPath}`
           },
-          {hid: "og:title", property: "title", content: this.magazine.magazineTitle},
+          {hid: "og:title", property: "og:title", content: this.magazine.magazineTitle},
           {
             hid: "og:description",
-            property: "description",
+            property: "og:description",
             content: this.magazine.magazineDesc
           },
           {

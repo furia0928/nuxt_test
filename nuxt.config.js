@@ -12,13 +12,13 @@ export default {
       {name: "viewport", content: "width=device-width, initial-scale=1"},
       {hid: "title", name: "title", content: "nuxt-test-title"},
       {hid: "description", name: "description", content: "nuxt-test-description"},
-      {hid: "og:url", name: "og:url", content: "https://furia0928.tk/"},
-      {hid: "og:type", name: "og:type", content: "website"},
-      {hid: "og:title", name: "og:title", content: "nuxt-test-title"},
-      {hid: "og:description", name: "og:description", content: "nuxt-test-description"},
+      {hid: "og:url", property: "og:url", content: "https://furia0928.tk/"},
+      {hid: "og:type", property: "og:type", content: "website"},
+      {hid: "og:title", property: "og:title", content: "nuxt-test-title"},
+      {hid: "og:description", property: "og:description", content: "nuxt-test-description"},
       {
         hid: "og:image",
-        name: "og:image",
+        property: "og:image",
         content:
           "https://res.cloudinary.com/redfern-web/image/upload/v1599840408/redfern-dev/png/nuxt.png"
       }

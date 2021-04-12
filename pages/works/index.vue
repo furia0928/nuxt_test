@@ -41,11 +41,15 @@
     head() {
       return {
         meta: [
-          {hid: "og:url", name: "og:url", content: `https://furia0928.tk/${this.$route.fullPath}`},
           {hid: "title", name: "title", content: "nuxt-test-mountains"},
           {
+            hid: "og:url",
+            property: "og:url",
+            content: `https://furia0928.tk/${this.$route.fullPath}`
+          },
+          {
             hid: "og:image",
-            name: "og:image",
+            property: "og:image",
             content: this.imgUrl(this.works?.[0].pcDetailImagePhysicalName)
           }
         ]
