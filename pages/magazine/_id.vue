@@ -21,16 +21,20 @@
     head() {
       return {
         meta: [
-          {hid: "og:url", name: "og:url", content: `https://furia0928.tk/${this.$route.fullPath}`},
-          {hid: "og:title", name: "title", content: this.magazine.magazineTitle},
+          {
+            hid: "og:url",
+            property: "og:url",
+            content: `https://furia0928.tk/${this.$route.fullPath}`
+          },
+          {hid: "og:title", property: "title", content: this.magazine.magazineTitle},
           {
             hid: "og:description",
-            name: "description",
+            property: "description",
             content: this.magazine.magazineDesc
           },
           {
             hid: "og:image",
-            name: "og:image",
+            property: "og:image",
             content: this.imgUrl(this.magazine.pcKeyPicturePhysicalName)
           }
         ]
