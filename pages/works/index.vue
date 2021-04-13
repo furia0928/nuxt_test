@@ -3,6 +3,7 @@
     <!--    <button @click="routerQueryUpdate(0)">123123</button>
     <button @click="routerQueryUpdate(1)">123123</button>
     <button @click="$fetch">Refresh</button>-->
+    {{ page }}
     <transition mode="out-in" name="list">
       <ul class="list" :key="$route.query.page" v-if="works">
         <li v-for="item in works" :key="item.id" class="list-item">
@@ -84,6 +85,7 @@
           }
         });
         return {
+          page: query.page,
           totalElements: response.totalElements,
           works: response.content
         };
