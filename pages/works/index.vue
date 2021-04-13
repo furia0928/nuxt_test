@@ -80,9 +80,9 @@
       }
     },
     watchQuery: ["page"],
-    async fetch({query}) {
+    async fetch({query, $axios}) {
       try {
-        const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
+        const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
             page: parseInt(query.page || 1) - 1,
             size: size
