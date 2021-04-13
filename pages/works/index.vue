@@ -3,7 +3,7 @@
     <!--    <button @click="routerQueryUpdate(0)">123123</button>
     <button @click="routerQueryUpdate(1)">123123</button>
     <button @click="$fetch">Refresh</button>-->
-    {{ page }}
+    {{ typeof page }}
     <div v-for="item in test">
       {{ item.id }}
     </div>
@@ -80,7 +80,8 @@
       }
     },
     watchQuery: ["page"],
-    async fetch({query, $axios}) {
+    async fetch({route, query, $axios}) {
+      console.log(route);
       try {
         const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
@@ -89,7 +90,6 @@
           }
         });
         this.test = response.content;
-        console.log("222", this.test);
       } catch (e) {
         console.log(e);
       }
