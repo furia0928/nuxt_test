@@ -8,7 +8,7 @@
     {{ typeof query }}<br />
     {{ query }}<br />
     <transition mode="out-in" name="list">
-      <ul class="list" :key="$route.query.page" v-if="works">
+      <ul class="list" :key="$route.query.page">
         <li v-for="item in works" :key="item.id" class="list-item">
           <nuxt-link :to="`/works/${item.id}/`">
             <div class="thumb">
@@ -83,19 +83,18 @@
         return process.env.API_URL + url;
       }
     },
-    watchQuery: ["page"],
-    async fetch({route, query, $axios}) {
-      console.log(route);
+    //watchQuery: ["page"],
+    async fetch() {
       try {
-        const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
+        const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
-            page: parseInt(query.page || 1) - 1,
-            size: size
+            page: parseInt(this.$route.query.page || 1) - 1,
+            size: this.size
           }
         });
         console.log(response.content);
-        this.works = response.content;
         this.totalElements = response.totalElements;
+        this.works = response.content;
         this.query = query;
         console.log("works", this.works);
       } catch (e) {
