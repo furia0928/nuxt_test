@@ -1,12 +1,5 @@
 <template>
   <div class="container">
-    <!--    <button @click="routerQueryUpdate(0)">123123</button>
-    <button @click="routerQueryUpdate(1)">123123</button>
-    <button @click="$fetch">Refresh</button>-->
-    {{ typeof page }}<br />
-    {{ page }}<br />
-    {{ typeof query }}<br />
-    {{ query }}<br />
     <transition mode="out-in" name="list">
       <ul class="list" :key="$route.query.page">
         <li v-for="item in works" :key="item.id" class="list-item">
@@ -44,7 +37,7 @@
   const size = 5;
   export default {
     mounted() {
-      console.log(this.works);
+      console.log("mounted", this.works);
     },
     head() {
       return {
@@ -83,25 +76,27 @@
         return process.env.API_URL + url;
       }
     },
-    //watchQuery: ["page"],
-    async fetch() {
+    watchQuery: ["page"],
+    /*async fetch(context) {
       try {
-        const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
-          params: {
-            page: parseInt(this.$route.query.page || 1) - 1,
-            size: this.size
+        console.log(context.query.page);
+        const {data: response} = await context.app.$axios.$get(
+          `${process.env.API_URL}/api/v1/works/`,
+          {
+            params: {
+              page: parseInt(context.query.page || 1) - 1,
+              size: size
+            }
           }
-        });
-        console.log(response.content);
+        );
         this.totalElements = response.totalElements;
         this.works = response.content;
-        this.query = query;
         console.log("works", this.works);
       } catch (e) {
         console.log(e);
       }
-    }
-    /*async asyncData({query, $axios}) {
+    }*/
+    async asyncData({query, $axios}) {
       try {
         console.log("query", query.page);
         const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
@@ -118,7 +113,7 @@
       } catch (e) {
         console.log(e);
       }
-    }*/
+    }
   };
 </script>
 
