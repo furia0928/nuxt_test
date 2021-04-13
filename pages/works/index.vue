@@ -3,7 +3,8 @@
     <!--    <button @click="routerQueryUpdate(0)">123123</button>
     <button @click="routerQueryUpdate(1)">123123</button>
     <button @click="$fetch">Refresh</button>-->
-    {{ typeof page }}
+    {{ typeof page }}<br />
+    {{ query }}
     <div v-for="item in test">
       {{ item.id }}
     </div>
@@ -43,6 +44,9 @@
 <script>
   const size = 5;
   export default {
+    mounted() {
+      console.log(this.works);
+    },
     head() {
       return {
         meta: [
@@ -66,7 +70,8 @@
         size: size,
         works: null,
         totalElements: 0,
-        test: null
+        test: null,
+        query: null
       };
     },
     methods: {
@@ -89,12 +94,16 @@
             size: size
           }
         });
-        this.test = response.content;
+        console.log(response.content);
+        this.works = response.content;
+        this.totalElements = response.totalElements;
+        this.query = query;
+        console.log("works", this.works);
       } catch (e) {
         console.log(e);
       }
-    },
-    async asyncData({query, $axios}) {
+    }
+    /*async asyncData({query, $axios}) {
       try {
         console.log("query", query.page);
         const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
@@ -111,7 +120,7 @@
       } catch (e) {
         console.log(e);
       }
-    }
+    }*/
   };
 </script>
 
