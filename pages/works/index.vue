@@ -4,7 +4,9 @@
     <button @click="routerQueryUpdate(1)">123123</button>
     <button @click="$fetch">Refresh</button>-->
     {{ page }}
-    {{ test }}
+    <div v-for="item in test">
+      {{ item.id }}
+    </div>
     <transition mode="out-in" name="list">
       <ul class="list" :key="$route.query.page" v-if="works">
         <li v-for="item in works" :key="item.id" class="list-item">
@@ -60,6 +62,7 @@
     },
     data() {
       return {
+        page: 0,
         size: size,
         works: null,
         totalElements: 0,
@@ -77,16 +80,16 @@
       }
     },
     watchQuery: ["page"],
-    async fetch({query, $axios}) {
+    async fetch({query}) {
       try {
-        const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
+        const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
             page: parseInt(query.page || 1) - 1,
             size: size
           }
         });
-        console.log("query", query.page);
         this.test = response.content;
+        console.log("222", this.test);
       } catch (e) {
         console.log(e);
       }
