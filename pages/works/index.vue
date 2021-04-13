@@ -74,18 +74,15 @@
       }
     },
     watchQuery: ["page"],
-    async asyncData(context) {
+    async asyncData({query, $axios}) {
       try {
-        console.log("query", context.query.page);
-        const {data: response} = await context.app.$axios.$get(
-          `${process.env.API_URL}/api/v1/works/`,
-          {
-            params: {
-              page: parseInt(context.query.page || 1) - 1,
-              size: size
-            }
+        console.log("query", query.page);
+        const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
+          params: {
+            page: parseInt(query.page || 1) - 1,
+            size: size
           }
-        );
+        });
         return {
           totalElements: response.totalElements,
           works: response.content
