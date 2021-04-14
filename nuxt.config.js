@@ -1,7 +1,6 @@
 const axios = require("axios");
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-
   head: {
     title: "emotion_nuxt",
     htmlAttrs: {
