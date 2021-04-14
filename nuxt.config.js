@@ -26,6 +26,7 @@ export default {
     link: [{rel: "icon", type: "image/x-icon", href: "/favicon.ico"}]
   },
   target: "server",
+
   css: [
     // Load a Node.js module directly (here it's a Sass file)
     //'@/assets/sass/_extend',
