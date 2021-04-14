@@ -77,6 +77,9 @@ export default {
   build: {
     transpile: [/^element-ui/]
   },
+  route: {
+    trailingSlash: false
+  },
   sitemap: {
     defaults: {
       changefreq: "daily",
