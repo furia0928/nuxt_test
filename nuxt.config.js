@@ -78,7 +78,7 @@ export default {
     transpile: [/^element-ui/]
   },
   router: {
-    trailingSlash: process.env.NODE_ENV !== "production" ? undefined : true
+    trailingSlash: true // process.env.NODE_ENV !== "production" ? undefined : true
   },
   sitemap: {
     defaults: {
