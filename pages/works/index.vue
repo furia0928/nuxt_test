@@ -37,6 +37,7 @@
   const size = 5;
   export default {
     mounted() {
+      window.alert("hello");
       console.log("mounted", this.works);
     },
     head() {
