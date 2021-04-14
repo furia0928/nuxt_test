@@ -2,6 +2,7 @@
   <div class="container">
     {{ page }}
     {{ typeof query }}
+    {{ JSON.stringify(query) }}
     <transition mode="out-in" name="list">
       <ul class="list" :key="$route.query.page">
         <li v-for="item in works" :key="item.id" class="list-item">
