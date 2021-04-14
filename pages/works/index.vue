@@ -98,7 +98,6 @@
     }*/
     async asyncData({query, $axios}) {
       try {
-        console.log("query", query.page);
         const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
             page: parseInt(query.page || 1) - 1,
@@ -106,7 +105,7 @@
           }
         });
         return {
-          page: query.page,
+          page: parseInt(query.page || 1) - 1,
           totalElements: response.totalElements,
           works: response.content
         };
