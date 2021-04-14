@@ -78,26 +78,8 @@
       }
     },
     watchQuery: ["page"],
-    /*async fetch(context) {
-      try {
-        console.log(context.query.page);
-        const {data: response} = await context.app.$axios.$get(
-          `${process.env.API_URL}/api/v1/works/`,
-          {
-            params: {
-              page: parseInt(context.query.page || 1) - 1,
-              size: size
-            }
-          }
-        );
-        this.totalElements = response.totalElements;
-        this.works = response.content;
-        console.log("works", this.works);
-      } catch (e) {
-        console.log(e);
-      }
-    }*/
     async asyncData({query, $axios}) {
+      console.log(query);
       try {
         const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
