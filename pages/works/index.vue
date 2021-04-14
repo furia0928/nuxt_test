@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     {{ page }}
+    {{ typeof query }}
     <transition mode="out-in" name="list">
       <ul class="list" :key="$route.query.page">
         <li v-for="item in works" :key="item.id" class="list-item">
@@ -104,6 +105,7 @@
           }
         });
         return {
+          query: query,
           page: parseInt(query.page || 1) - 1,
           totalElements: response.totalElements,
           works: response.content
