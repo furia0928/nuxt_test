@@ -5,7 +5,7 @@
     {{ JSON.stringify(query) }} <input type="text" v-model="pageNum" />
     <button class="testBtn" type="button" @click="testBtn">tetet</button>-->
     <transition mode="out-in" name="list">
-      <ul class="list" :key="$route.params.id">
+      <ul class="list" :key="page">
         <li v-for="item in works" :key="item.id" class="list-item">
           <nuxt-link :to="`/works/page/${item.id}/`">
             <div class="thumb">
@@ -28,7 +28,6 @@
         </li>
       </ul>
     </transition>
-    {{ typeof $route.params.id }}
     <el-pagination
       class="pagination"
       layout="prev, pager, next"
@@ -42,9 +41,7 @@
 <script>
   const size = 5;
   export default {
-    mounted() {
-      console.log(this.$route.query);
-    },
+    mounted() {},
     head() {
       return {
         meta: [
@@ -67,9 +64,7 @@
         page: 0,
         size: size,
         works: null,
-        totalElements: 0,
-        test: null,
-        query: null
+        totalElements: 0
       };
     },
     methods: {
