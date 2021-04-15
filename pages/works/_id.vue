@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    {{ page }}
+    <!--    {{ page }}
     {{ typeof query }}
     {{ JSON.stringify(query) }} <input type="text" v-model="pageNum" />
-    <button class="testBtn" type="button" @click="testBtn">tetet</button>
+    <button class="testBtn" type="button" @click="testBtn">tetet</button>-->
     <transition mode="out-in" name="list">
       <ul class="list" :key="$route.params.id">
         <li v-for="item in works" :key="item.id" class="list-item">
-          <nuxt-link :to="`/works/${item.id}/`">
+          <nuxt-link :to="`/works/page/${item.id}/`">
             <div class="thumb">
               <img :src="imgUrl(item.pcDetailImagePhysicalName)" alt="" />
             </div>
@@ -28,12 +28,13 @@
         </li>
       </ul>
     </transition>
+    {{ typeof $route.params.id }}
     <el-pagination
       class="pagination"
       layout="prev, pager, next"
       :page-size="size"
       :total="totalElements"
-      :current-page.sync="$route.params.id"
+      :current-page.sync="page"
       @current-change="routerQueryUpdate"
     ></el-pagination>
   </div>
@@ -63,7 +64,6 @@
     },
     data() {
       return {
-        pageNum: 0,
         page: 0,
         size: size,
         works: null,
@@ -73,17 +73,6 @@
       };
     },
     methods: {
-      async testBtn() {
-        const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
-          params: {
-            page: parseInt(this.pageNum || 1) - 1,
-            size: size
-          }
-        });
-        this.page = parseInt(this.pageNum || 1) - 1;
-        this.totalElements = response.totalElements;
-        this.works = response.content;
-      },
       routerQueryUpdate(val) {
         this.$router.push({
           params: {id: val}
@@ -93,9 +82,7 @@
         return process.env.API_URL + url;
       }
     },
-    watchQuery: ["page"],
     async asyncData({params, $axios}) {
-      console.log("123123123123", params);
       try {
         const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
@@ -104,7 +91,7 @@
           }
         });
         return {
-          page: parseInt(params.id || 1) - 1,
+          page: parseInt(params.id || 1),
           totalElements: response.totalElements,
           works: response.content
         };
