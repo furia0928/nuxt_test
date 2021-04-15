@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <div>{{ page }}</div>
+    <!--    {{ page }}
+    {{ typeof query }}
+    {{ JSON.stringify(query) }} <input type="text" v-model="pageNum" />
+    <button class="testBtn" type="button" @click="testBtn">tetet</button>-->
     <transition mode="out-in" name="list">
       <ul class="list" :key="page">
         <li v-for="item in works" :key="item.id" class="list-item">
@@ -61,7 +64,6 @@
         page: 0,
         size: size,
         works: null,
-
         totalElements: 0
       };
     },

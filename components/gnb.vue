@@ -10,9 +10,9 @@
       <li>
         <nuxt-link to="/magazine">Magazine</nuxt-link>
       </li>
-      <li>
+      <!--      <li>
         <nuxt-link to="/test">test</nuxt-link>
-      </li>
+      </li>-->
     </ul>
     <button type="button" @click="facebookShare">facebook</button>
   </div>
