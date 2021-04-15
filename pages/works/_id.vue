@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    {{ page }}
     <!--    {{ page }}
     {{ typeof query }}
     {{ JSON.stringify(query) }} <input type="text" v-model="pageNum" />
