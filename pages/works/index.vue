@@ -2,7 +2,8 @@
   <div class="container">
     {{ page }}
     {{ typeof query }}
-    {{ JSON.stringify(query) }}
+    {{ JSON.stringify(query) }} <input type="text" v-model="pageNum" />
+    <button class="testBtn" type="button" @click="testBtn">tetet</button>
     <transition mode="out-in" name="list">
       <ul class="list" :key="$route.query.page">
         <li v-for="item in works" :key="item.id" class="list-item">
@@ -39,7 +40,9 @@
 <script>
   const size = 5;
   export default {
-    mounted() {},
+    mounted() {
+      console.log(this.$route.query);
+    },
     head() {
       return {
         meta: [
@@ -59,6 +62,7 @@
     },
     data() {
       return {
+        pageNum: 0,
         page: 0,
         size: size,
         works: null,
@@ -68,6 +72,17 @@
       };
     },
     methods: {
+      async testBtn() {
+        const {data: response} = await this.$axios.$get(`${process.env.API_URL}/api/v1/works/`, {
+          params: {
+            page: parseInt(this.pageNum || 1) - 1,
+            size: size
+          }
+        });
+        this.page = parseInt(this.pageNum || 1) - 1;
+        this.totalElements = response.totalElements;
+        this.works = response.content;
+      },
       routerQueryUpdate(val) {
         this.$router.push({
           query: {page: val}
@@ -101,6 +116,9 @@
 </script>
 
 <style lang="scss" scoped>
+  .testBtn {
+    background: $red;
+  }
   .pagination {
     margin-top: 30px;
     text-align: center;

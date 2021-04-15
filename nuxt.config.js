@@ -28,12 +28,15 @@ export default {
   css: [
     // Load a Node.js module directly (here it's a Sass file)
     //'@/assets/sass/_extend',
-    "@/assets/sass/common",
-    "element-ui/lib/theme-chalk/index.css"
+    "element-ui/lib/theme-chalk/index.css",
+    "~assets/sass/_variables.scss",
+    /*"~assets/sass/_extend.scss",
+    "~assets/sass/_mixins.scss",*/
+    "~assets/sass/common"
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ["@/plugins/element-ui"],
+  plugins: ["@/plugins/element-ui", "~/plugins/axios"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -61,7 +64,9 @@ export default {
   modules: ["@nuxtjs/axios", "@nuxt/content", "@nuxtjs/sitemap", "@nuxtjs/style-resources"],
 
   styleResources: {
-    scss: ["~assets/sass/_extend", "~assets/sass/_mixins", "~assets/sass/_variables"]
+    scss: [
+      /*"~assets/sass/_extend.scss", "~assets/sass/_mixins.scss", */ "~assets/sass/_variables.scss"
+    ]
   },
   /*axios: {
     baseURL:
