@@ -61,6 +61,7 @@
         page: 0,
         size: size,
         works: null,
+
         totalElements: 0
       };
     },
