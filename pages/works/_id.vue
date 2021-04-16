@@ -28,6 +28,11 @@
         </li>
       </ul>
     </transition>
+    <nuxt-link :to="`/works/5/`">5</nuxt-link>
+    <nuxt-link :to="`/works/4/`">4</nuxt-link>
+    <nuxt-link :to="`/works/3/`">3</nuxt-link>
+    <nuxt-link :to="`/works/2/`">2</nuxt-link>
+    <nuxt-link :to="`/works/1/`">1</nuxt-link>
     <el-pagination
       class="pagination"
       layout="prev, pager, next"
