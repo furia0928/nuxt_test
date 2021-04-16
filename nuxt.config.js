@@ -83,11 +83,8 @@ export default {
     transpile: [/^element-ui/]
   },
   generate: {
-    routes: ["/works/1", "/works/2", "/works/3", "/works/4", "/works/5"]
-  },
-  router: {
-    /*async extendRoutes(routes, resolve) {
-      // Add some routes here ...
+    //routes: ["/works/1", "/works/2", "/works/3", "/works/4", "/works/5"]
+    routes: async () => {
       const {
         data: {data: works}
       } = await axios.get(`https://api.emotion.co.kr/api/v1/works/`, {
@@ -96,23 +93,14 @@ export default {
           size: 9999
         }
       });
+      let test = [];
       for (let i = 1; i <= Math.ceil(works.totalElements / 5); i++) {
-        routes.push({
-          name: `works${i}`,
-          path: `/works/${i}/`,
-          component: "pages/works/_id.vue"
-        });
+        test.push(`/works/${i}`);
       }
-      console.log(routes);
-      routes.push({
-        name: "custom",
-        path: "*",
-        component: resolve(__dirname, "pages/404.vue")
-      });
-      // and then sort them
-      sortRoutes(routes);
-    }*/
+      return test;
+    }
   },
+  router: {},
   sitemap: {
     defaults: {
       changefreq: "daily",
@@ -138,7 +126,7 @@ export default {
           size: 9999
         }
       });
-      const workArr = works.content.map(el => `/works/${el.id}/`);
+      const workArr = works.content.map(el => `/works/page/${el.id}/`);
       const magazineArr = magazine.content.map(el => `/magazine/${el.id}/`);
       return ["/", ...workArr, ...magazineArr];
     }
@@ -148,7 +136,6 @@ export default {
     mode: "out-in",
     css: false,
     beforeEnter(el) {
-      console.log("page beforeEnter");
       this.$gsap.set(el, {
         x: 50,
         opacity: 0
@@ -164,7 +151,6 @@ export default {
       });
     },
     beforeLeave(el) {
-      console.log("page beforeLeave");
       this.$gsap.set(el, {
         x: 0,
         opacity: 1
@@ -184,7 +170,6 @@ export default {
     name: "layout",
     mode: "out-in",
     beforeEnter(el) {
-      console.log("page beforeEnter");
       this.$gsap.set(el, {
         x: 50,
         opacity: 0
@@ -200,7 +185,6 @@ export default {
       });
     },
     beforeLeave(el) {
-      console.log("page beforeLeave");
       this.$gsap.set(el, {
         x: 0,
         opacity: 1
