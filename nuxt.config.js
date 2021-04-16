@@ -27,9 +27,17 @@ export default {
   target: "static",
   css: [
     "element-ui/lib/theme-chalk/index.css",
-    "~assets/sass/_variables.scss",
+    /*"~assets/sass/_variables.scss",
+    "~assets/sass/_extend.scss",*/
+    "~assets/sass/_mixins.scss",
     "~assets/sass/common"
   ],
+  styleResources: {
+    scss: [
+      /*"~assets/sass/_extend.scss", "~assets/sass/_mixins.scss", */ "~assets/sass/_variables.scss"
+    ]
+  },
+
   plugins: ["@/plugins/element-ui", "~/plugins/axios"],
   components: true,
   buildModules: ["nuxt-gsap-module"],
@@ -42,9 +50,6 @@ export default {
   },
   ssr: true,
   modules: ["@nuxtjs/axios", "@nuxt/content", "@nuxtjs/sitemap", "@nuxtjs/style-resources"],
-  styleResources: {
-    scss: ["~assets/sass/_extend.scss", "~assets/sass/_mixins.scss", "~assets/sass/_variables.scss"]
-  },
   content: {},
   build: {
     transpile: [/^element-ui/]
