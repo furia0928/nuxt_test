@@ -1,7 +1,5 @@
 const axios = require("axios");
-import {sortRoutes} from "@nuxt/utils";
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "emotion_nuxt",
     htmlAttrs: {
@@ -12,6 +10,7 @@ export default {
       {name: "viewport", content: "width=device-width, initial-scale=1"},
       {hid: "title", name: "title", content: "nuxt-test-title"},
       {hid: "description", name: "description", content: "nuxt-test-description"},
+      {hid: "theme-color", name: "theme-color", content: "#317EFB"},
       {hid: "og:url", property: "og:url", content: "https://furia0928.tk/"},
       {hid: "og:type", property: "og:type", content: "website"},
       {hid: "og:title", property: "og:title", content: "nuxt-test-title"},
@@ -27,63 +26,30 @@ export default {
   },
   target: "static",
   css: [
-    // Load a Node.js module directly (here it's a Sass file)
-    //'@/assets/sass/_extend',
     "element-ui/lib/theme-chalk/index.css",
     "~assets/sass/_variables.scss",
-    /*"~assets/sass/_extend.scss",
-    "~assets/sass/_mixins.scss",*/
     "~assets/sass/common"
   ],
-
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ["@/plugins/element-ui", "~/plugins/axios"],
-
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
-  //mode: "universal",
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: ["nuxt-gsap-module"],
-
   dev: process.env.NODE_ENV !== "production",
-
   env: {
     API_URL:
       process.env.NODE_ENV !== "production"
         ? "http://devapi.emotion.co.kr"
         : "https://api.emotion.co.kr"
   },
-
-  /*dotenv: {
-    filename: process.env.NODE_ENV === 'production'
-      ? '.env'
-      : '.env.' + process.env.NODE_ENV
-  },*/
-
   ssr: true,
-
   modules: ["@nuxtjs/axios", "@nuxt/content", "@nuxtjs/sitemap", "@nuxtjs/style-resources"],
-
   styleResources: {
-    scss: [
-      /*"~assets/sass/_extend.scss", "~assets/sass/_mixins.scss", */ "~assets/sass/_variables.scss"
-    ]
+    scss: ["~assets/sass/_extend.scss", "~assets/sass/_mixins.scss", "~assets/sass/_variables.scss"]
   },
-  /*axios: {
-    baseURL:
-      process.env.NODE_ENV !== "production"
-        ? "http://devapi.emotion.co.kr"
-        : "https://api.emotion.co.kr"
-  },*/
-
   content: {},
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: [/^element-ui/]
   },
   generate: {
-    //routes: ["/works/1", "/works/2", "/works/3", "/works/4", "/works/5"]
     routes: async () => {
       const {
         data: {data: works}
