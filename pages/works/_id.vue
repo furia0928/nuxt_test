@@ -114,15 +114,15 @@
   }
   .list {
     border: 1px solid #ddd;
-    transition-duration: 0.3s;
-    transition-property: transform, opacity;
+    //transition-duration: 0.3s;
+    //transition-property: transform, opacity;
   }
-  .list-enter {
+  /*.list-enter {
     opacity: 0;
   }
   .list-leave-to {
     opacity: 0;
-  }
+  }*/
   .list-leave-active {
     //position: absolute;
   }
