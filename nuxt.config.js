@@ -1,4 +1,5 @@
 const axios = require("axios");
+import {sortRoutes} from "@nuxt/utils";
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -81,8 +82,36 @@ export default {
   build: {
     transpile: [/^element-ui/]
   },
+  generate: {
+    routes: ["/works/1", "/works/2", "/works/3", "/works/4", "/works/5"]
+  },
   router: {
-    //trailingSlash: true // process.env.NODE_ENV !== "production" ? undefined : true
+    /*async extendRoutes(routes, resolve) {
+      // Add some routes here ...
+      const {
+        data: {data: works}
+      } = await axios.get(`https://api.emotion.co.kr/api/v1/works/`, {
+        params: {
+          page: 0,
+          size: 9999
+        }
+      });
+      for (let i = 1; i <= Math.ceil(works.totalElements / 5); i++) {
+        routes.push({
+          name: `works${i}`,
+          path: `/works/${i}/`,
+          component: "pages/works/_id.vue"
+        });
+      }
+      console.log(routes);
+      routes.push({
+        name: "custom",
+        path: "*",
+        component: resolve(__dirname, "pages/404.vue")
+      });
+      // and then sort them
+      sortRoutes(routes);
+    }*/
   },
   sitemap: {
     defaults: {

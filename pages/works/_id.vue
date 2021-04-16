@@ -28,11 +28,11 @@
         </li>
       </ul>
     </transition>
-    <nuxt-link :to="`/works/5/`">5</nuxt-link>
+    <!--    <nuxt-link :to="`/works/5/`">5</nuxt-link>
     <nuxt-link :to="`/works/4/`">4</nuxt-link>
     <nuxt-link :to="`/works/3/`">3</nuxt-link>
     <nuxt-link :to="`/works/2/`">2</nuxt-link>
-    <nuxt-link :to="`/works/1/`">1</nuxt-link>
+    <nuxt-link :to="`/works/1/`">1</nuxt-link>-->
     <el-pagination
       class="pagination"
       layout="prev, pager, next"
@@ -74,6 +74,7 @@
     },
     methods: {
       routerQueryUpdate(val) {
+        console.log(val);
         this.$router.push({
           params: {id: val}
         });
@@ -83,6 +84,7 @@
       }
     },
     async asyncData({params, $axios}) {
+      console.log(params);
       try {
         const {data: response} = await $axios.$get(`${process.env.API_URL}/api/v1/works/`, {
           params: {
