@@ -4,30 +4,29 @@
     {{ typeof query }}
     {{ JSON.stringify(query) }} <input type="text" v-model="pageNum" />
     <button class="testBtn" type="button" @click="testBtn">tetet</button>-->
-    <transition mode="out-in" name="list">
-      <ul class="list" :key="page">
-        <li v-for="item in works" :key="item.id" class="list-item">
-          <nuxt-link :to="`/works/page/${item.id}/`">
-            <div class="thumb">
-              <img :src="imgUrl(item.pcDetailImagePhysicalName)" alt="" />
+    <button type="button" @click="refresh">refresh</button>
+    <ul class="list" :key="page">
+      <li v-for="item in works" :key="item.id" class="list-item">
+        <nuxt-link :to="`/works/page/${item.id}/`">
+          <div class="thumb">
+            <img :src="imgUrl(item.pcDetailImagePhysicalName)" alt="" />
+          </div>
+          <div class="info">
+            <div>
+              {{ item.id }}
             </div>
-            <div class="info">
-              <div>
-                {{ item.id }}
-              </div>
-              <div class="title">
-                {{ item.project }}
-              </div>
-              <div>
-                {{ item.portFolioSortCode }}<br />
-                {{ item.projectClientName }}<br />
-                {{ item.projectType }}
-              </div>
+            <div class="title">
+              {{ item.project }}
             </div>
-          </nuxt-link>
-        </li>
-      </ul>
-    </transition>
+            <div>
+              {{ item.portFolioSortCode }}<br />
+              {{ item.projectClientName }}<br />
+              {{ item.projectType }}
+            </div>
+          </div>
+        </nuxt-link>
+      </li>
+    </ul>
     <!--    <nuxt-link :to="`/works/5/`">5</nuxt-link>
     <nuxt-link :to="`/works/4/`">4</nuxt-link>
     <nuxt-link :to="`/works/3/`">3</nuxt-link>
@@ -46,7 +45,6 @@
 <script>
   const size = 5;
   export default {
-    mounted() {},
     head() {
       return {
         meta: [
@@ -72,7 +70,16 @@
         totalElements: 0
       };
     },
+    mounted() {
+      this.$nextTick(() => {
+        this.$nuxt.$loading.start();
+        setTimeout(() => this.$nuxt.$loading.finish(), 500);
+      });
+    },
     methods: {
+      refresh() {
+        this.$nuxt.refresh();
+      },
       routerQueryUpdate(val) {
         console.log(val);
         this.$router.push({
